@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ran & Shana — Japan 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Noto+Serif+JP:wght@300;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --ink: #1a1a1a;
+    --paper: #fbfaf7;
+    --maple: #d4541e;
+    --moss: #4a5c3a;
+    --gold: #b8945a;
+    --line: rgba(0,0,0,0.08);
+    --muted: #888;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  .jp { font-family: 'Noto Serif JP', serif; }
+  h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400; letter-spacing: 0.01em;
+  }
+  a { color: var(--maple); text-decoration: none; border-bottom: 1px dotted var(--maple); }
+  a:hover { opacity: 0.7; }
+
+  /* TOP BAR */
+  nav.top {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(251,250,247,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+    padding: 0.9rem 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  nav.top .brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; font-style: italic;
+  }
+  nav.top .brand .jp-mark { color: var(--maple); margin-right: 0.4rem; }
+  nav.top .nav-buttons { display: flex; gap: 0.4rem; }
+  .nav-btn {
+    background: transparent; border: 1px solid var(--line);
+    color: var(--ink); font-family: inherit;
+    padding: 0.4rem 1rem; cursor: pointer;
+    font-size: 0.8rem; letter-spacing: 0.05em;
+    border-radius: 2px;
+    transition: all 0.2s ease;
+  }
+  .nav-btn:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  /* HERO — minimal */
+  .hero {
+    text-align: center;
+    padding: 5rem 1.5rem 3rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero .jp-title { font-size: 0.85rem; letter-spacing: 0.7em; color: var(--maple); margin-bottom: 1.5rem; }
+  .hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1.1; margin-bottom: 0.8rem;
+  }
+  .hero .ampersand { color: var(--maple); font-style: italic; }
+  .hero .subtitle {
+    font-size: 0.85rem; letter-spacing: 0.3em;
+    color: var(--muted); text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .hero .dates {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; font-style: italic; color: var(--moss);
+  }
+  .hero .dates strong { color: var(--ink); font-style: normal; }
+
+  /* MAIN CALENDAR SECTION */
+  main { padding: 4rem 1.5rem 5rem; max-width: 1000px; margin: 0 auto; }
+  .calendar-month {
+    margin-bottom: 3rem;
+  }
+  .month-label {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-style: italic;
+    color: var(--moss); margin-bottom: 1rem;
+  }
+  .weekdays {
+    display: grid; grid-template-columns: repeat(7, 1fr);
+    gap: 0.4rem; margin-bottom: 0.4rem;
+  }
+  .weekdays div {
+    text-align: center;
+    font-size: 0.65rem; letter-spacing: 0.2em;
+    color: var(--muted); padding: 0.3rem 0;
+    text-transform: uppercase;
+  }
+  .cal-grid {
+    display: grid; grid-template-columns: repeat(7, 1fr);
+    gap: 0.4rem;
+  }
+  .cal-cell {
+    aspect-ratio: 1 / 1;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 0.5rem;
+    position: relative;
+    transition: all 0.2s;
+    font-size: 0.85rem;
+    display: flex; flex-direction: column;
+    background: #fff;
+  }
+  .cal-cell.empty { border: none; background: transparent; }
+  .cal-cell.outside { opacity: 0.25; pointer-events: none; }
+  .cal-cell.has-plan {
+    cursor: pointer;
+    border: 1px solid var(--maple);
+  }
+  .cal-cell.has-plan:hover {
+    background: var(--maple); color: white;
+    transform: scale(1.04);
+    box-shadow: 0 6px 20px rgba(212,84,30,0.25);
+    z-index: 2;
+  }
+  .cal-cell.has-plan:hover .cell-loc,
+  .cal-cell.has-plan:hover .cell-tag { color: rgba(255,255,255,0.9); }
+  .cal-cell.placeholder { background: #fafafa; cursor: pointer; }
+  .cal-cell.placeholder:hover { border-color: var(--moss); background: #f4f7f0; }
+  .cell-date {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 500; line-height: 1;
+    display: flex; align-items: baseline; gap: 0.3rem;
+  }
+  .cell-month {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.55rem; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--muted);
+    font-weight: 400;
+  }
+  .cal-cell.has-plan:hover .cell-month { color: rgba(255,255,255,0.85); }
+  .cal-cell.month-start { border-top: 2px solid var(--moss); }
+  .cell-loc {
+    font-size: 0.7rem; color: #666;
+    line-height: 1.2; margin-top: 0.3rem;
+    overflow: hidden; text-overflow: ellipsis;
+  }
+  .cell-tag {
+    font-size: 0.55rem; letter-spacing: 0.1em;
+    color: var(--maple); text-transform: uppercase;
+    margin-top: auto;
+  }
+  .cell-icon {
+    position: absolute; top: 0.3rem; right: 0.4rem;
+    font-size: 0.8rem; opacity: 0.6;
+  }
+
+  /* COMPACT FLIGHT STRIP */
+  .flight-strip {
+    max-width: 1000px; margin: 0 auto;
+    padding: 0 1.5rem 4rem;
+  }
+  .flight-card {
+    background: var(--ink); color: var(--paper);
+    border-radius: 4px; padding: 1.5rem 1.8rem;
+    font-size: 0.85rem;
+  }
+  .flight-card h3 {
+    color: var(--gold); font-size: 0.75rem;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    margin-bottom: 1rem; font-family: 'Inter', sans-serif; font-weight: 500;
+  }
+  .flight-leg {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 1rem;
+    align-items: center;
+    padding: 0.8rem 0;
+    border-bottom: 1px dashed rgba(255,255,255,0.1);
+  }
+  .flight-leg:last-child { border-bottom: none; }
+  .flight-leg .airport { text-align: center; }
+  .flight-leg .airport .code { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--paper); }
+  .flight-leg .airport .city { font-size: 0.7rem; color: #aaa; letter-spacing: 0.1em; }
+  .flight-leg .airport .time { font-size: 0.85rem; color: var(--gold); margin-top: 0.2rem; }
+  .flight-leg .airport .date-tag { font-size: 0.65rem; color: #888; }
+  .flight-leg .middle { text-align: center; color: #888; font-size: 0.7rem; }
+  .flight-leg .middle .plane { font-size: 1.2rem; color: var(--gold); }
+  .booking-ref {
+    text-align: center; margin-top: 1rem;
+    font-size: 0.75rem; color: #888; letter-spacing: 0.2em;
+  }
+  .booking-ref strong { color: var(--gold); }
+
+  /* MODAL */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: none; align-items: flex-start; justify-content: center;
+    z-index: 1000; padding: 2rem 1rem; overflow-y: auto;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal {
+    background: var(--paper);
+    max-width: 780px; width: 100%;
+    border-radius: 6px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    margin: 1rem 0;
+    overflow: hidden;
+    animation: slideUp 0.3s ease;
+  }
+  @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .modal-header {
+    background: var(--ink); color: var(--paper);
+    padding: 1.8rem 2rem; position: relative;
+  }
+  .modal-header .close {
+    position: absolute; top: 0.8rem; right: 1rem;
+    background: transparent; border: none;
+    color: var(--paper); font-size: 1.8rem; cursor: pointer; line-height: 1;
+  }
+  .modal-header .close:hover { color: var(--maple); }
+  .modal-header .day-kanji { color: var(--maple); font-size: 0.75rem; letter-spacing: 0.4em; }
+  .modal-header h2 { font-size: 1.7rem; margin: 0.3rem 0; }
+  .modal-header .modal-date { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--gold); font-size: 1.05rem; }
+  .modal-header .modal-loc { color: #ccc; font-size: 0.9rem; margin-top: 0.3rem; }
+
+  .modal-body { padding: 1.8rem; }
+  .modal-section { margin-bottom: 2rem; }
+  .modal-section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; color: var(--moss);
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 0.4rem; margin-bottom: 1rem;
+  }
+  .hotel-box {
+    background: white;
+    border-left: 3px solid var(--gold);
+    padding: 0.9rem 1.1rem; margin-bottom: 1.2rem;
+  }
+  .hotel-box .hotel-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; }
+  .hotel-box .hotel-note { font-size: 0.85rem; color: #555; margin-top: 0.3rem; }
+
+  .schedule { display: flex; flex-direction: column; gap: 0.5rem; counter-reset: step; }
+  .sched-item {
+    display: grid; grid-template-columns: 28px 1fr auto;
+    gap: 0.9rem; padding: 0.85rem 1rem;
+    background: white;
+    border-left: 3px solid var(--maple);
+    border-radius: 2px;
+    align-items: center;
+  }
+  .sched-item.user-added { border-left-color: var(--moss); background: #f4f7f0; }
+  .sched-step {
+    counter-increment: step;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; color: var(--maple); font-weight: 500;
+    text-align: center; line-height: 1;
+  }
+  .sched-step::before { content: counter(step); }
+  .sched-item.user-added .sched-step { color: var(--moss); }
+  .sched-content h4 { font-size: 0.98rem; font-weight: 400; }
+  .sched-maps {
+    color: var(--muted); font-size: 1rem;
+    border-bottom: none; padding: 0.2rem 0.45rem;
+    border-radius: 3px;
+    transition: all 0.2s;
+  }
+  .sched-maps:hover { color: var(--maple); background: rgba(212,84,30,0.08); }
+  .sched-actions { display: flex; align-items: center; gap: 0.2rem; }
+  .sched-delete {
+    background: transparent; border: none;
+    color: #ccc; font-size: 1.1rem; cursor: pointer;
+    padding: 0.2rem 0.4rem; line-height: 1;
+  }
+  .sched-delete:hover { color: var(--maple); }
+  .sched-item:not(.user-added) .sched-delete { display: none; }
+
+  .add-form {
+    background: #fff; border: 2px dashed var(--moss);
+    border-radius: 4px; padding: 1rem 1.2rem; margin-top: 1rem;
+  }
+  .add-form .form-title {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--moss); font-size: 1.05rem; margin-bottom: 0.6rem;
+  }
+  .add-form .form-row {
+    display: grid; grid-template-columns: 100px 1fr;
+    gap: 0.5rem; margin-bottom: 0.5rem; align-items: center;
+  }
+  .add-form input, .add-form textarea {
+    font-family: inherit; font-size: 0.88rem;
+    padding: 0.45rem 0.65rem;
+    border: 1px solid var(--line); border-radius: 3px;
+    width: 100%; background: var(--paper);
+  }
+  .add-form input:focus, .add-form textarea:focus { outline: none; border-color: var(--moss); }
+  .add-form textarea { resize: vertical; min-height: 45px; }
+  .add-form label { font-size: 0.8rem; color: var(--muted); }
+  .add-form .btn-add {
+    background: var(--moss); color: white; border: none;
+    padding: 0.55rem 1.3rem; font-family: inherit; font-size: 0.8rem;
+    letter-spacing: 0.1em; cursor: pointer; border-radius: 3px;
+    margin-top: 0.4rem;
+  }
+  .add-form .btn-add:hover { background: #3a4a2c; }
+  @media(max-width: 600px) {
+    .add-form .form-row { grid-template-columns: 1fr; }
+  }
+
+  .sleep-box, .area-box {
+    background: white;
+    border-left: 3px solid var(--moss);
+    padding: 1rem 1.2rem;
+    border-radius: 2px;
+  }
+  .sleep-box .sleep-title, .area-box .area-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem; letter-spacing: 0.25em;
+    color: var(--moss); text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .sleep-box .sleep-name, .area-box .area-city {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem; color: var(--ink);
+  }
+  .sleep-box .sleep-note, .area-box .area-list {
+    font-size: 0.85rem; color: #555; margin-top: 0.3rem;
+  }
+  .sleep-box.tbd .sleep-name { color: var(--muted); font-style: italic; }
+  .area-box { border-left-color: var(--maple); }
+  .area-box .area-title { color: var(--maple); }
+  .area-box .area-list .area-chip {
+    display: inline-block;
+    background: rgba(212,84,30,0.08);
+    color: var(--maple);
+    padding: 0.15rem 0.55rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    margin-right: 0.35rem; margin-top: 0.25rem;
+    letter-spacing: 0.02em;
+  }
+
+  .food-box {
+    background: white;
+    border-left: 3px solid var(--gold);
+    padding: 1rem 1.2rem;
+    border-radius: 2px;
+  }
+  .food-box .food-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem; letter-spacing: 0.25em;
+    color: var(--gold); text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .food-list { display: flex; flex-direction: column; gap: 0.4rem; }
+  .food-item {
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 0.7rem; align-items: center;
+    padding: 0.55rem 0.75rem;
+    background: #fff8ef;
+    border-radius: 2px;
+  }
+  .food-item .food-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem; color: var(--ink);
+  }
+  .food-item .food-meta {
+    font-size: 0.75rem; color: #777;
+    letter-spacing: 0.04em; margin-top: 0.1rem;
+  }
+  .food-item .food-maps {
+    color: var(--muted); font-size: 1rem;
+    border-bottom: none; padding: 0.2rem 0.45rem;
+    border-radius: 3px; transition: all 0.2s;
+  }
+  .food-item .food-maps:hover { color: var(--maple); background: rgba(212,84,30,0.08); }
+  .food-empty {
+    color: var(--muted); font-style: italic;
+    font-size: 0.85rem; padding: 0.3rem 0;
+  }
+
+  /* ROAD TRIP */
+  .roadmap-strip { max-width: 1000px; margin: 0 auto; padding: 0 1.5rem 5rem; }
+  .roadmap-header {
+    text-align: center; margin-bottom: 2rem;
+  }
+  .roadmap-header .jp-mark { color: var(--maple); font-size: 0.8rem; letter-spacing: 0.5em; margin-bottom: 0.5rem; }
+  .roadmap-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; color: var(--ink); font-style: italic;
+  }
+  .roadmap-header .subtitle {
+    font-size: 0.75rem; letter-spacing: 0.3em; color: var(--muted);
+    text-transform: uppercase; margin-top: 0.3rem;
+  }
+  .roadmap {
+    display: flex; flex-direction: column;
+    gap: 0; position: relative;
+  }
+  .road-stop {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 1.1rem;
+    background: white;
+    padding: 1.1rem 1.3rem;
+    border-radius: 4px;
+    border-left: 3px solid var(--maple);
+    align-items: center;
+  }
+  .road-stop.endpoint { border-left-color: var(--ink); background: var(--ink); color: var(--paper); }
+  .road-stop.endpoint .stop-name { color: var(--paper); }
+  .road-stop.endpoint .stop-dates { color: var(--gold); }
+  .road-stop.endpoint .stop-note { color: #bbb; }
+  .road-stop .stop-icon {
+    font-size: 2rem; text-align: center;
+    width: 60px;
+  }
+  .road-stop .stop-body { display: flex; flex-direction: column; gap: 0.15rem; }
+  .road-stop .stop-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; color: var(--ink);
+    display: flex; align-items: baseline; gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+  .road-stop .stop-nights {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem; color: var(--maple);
+    letter-spacing: 0.15em; text-transform: uppercase;
+    font-weight: 400;
+  }
+  .road-stop .stop-dates {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-size: 0.95rem;
+    color: var(--moss);
+  }
+  .road-stop .stop-note {
+    font-size: 0.82rem; color: #666; margin-top: 0.2rem;
+  }
+  .road-stop .stop-hotel {
+    font-size: 0.78rem; color: var(--gold);
+    margin-top: 0.15rem; letter-spacing: 0.05em;
+  }
+  .road-stop .stop-hotel.tbd { color: var(--muted); font-style: italic; }
+  .road-connector {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 1.1rem;
+    align-items: center;
+    padding: 0.5rem 1.3rem;
+  }
+  .road-connector .connector-line {
+    text-align: center;
+    color: var(--moss); opacity: 0.5;
+    font-size: 1.4rem; line-height: 1;
+  }
+  .road-connector .connector-mode {
+    font-size: 0.78rem; color: var(--muted);
+    font-style: italic; letter-spacing: 0.04em;
+  }
+  @media(max-width: 600px) {
+    .road-stop { grid-template-columns: 44px 1fr; gap: 0.7rem; padding: 0.9rem 0.9rem; }
+    .road-stop .stop-icon { width: 44px; font-size: 1.6rem; }
+    .road-stop .stop-name { font-size: 1.2rem; }
+    .road-connector { grid-template-columns: 44px 1fr; gap: 0.7rem; padding: 0.4rem 0.9rem; }
+  }
+
+  /* NOTES FOR CLAUDE */
+  .notes-strip { max-width: 760px; margin: 0 auto; padding: 0 1.5rem 5rem; }
+  .notes-header { text-align: center; margin-bottom: 2rem; }
+  .notes-header .jp-mark { color: var(--maple); font-size: 0.8rem; letter-spacing: 0.5em; margin-bottom: 0.5rem; }
+  .notes-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-style: italic; }
+  .notes-header .subtitle { font-size: 0.75rem; letter-spacing: 0.25em; color: var(--muted); text-transform: uppercase; margin-top: 0.3rem; }
+  .notes-form {
+    background: white;
+    border: 2px dashed var(--moss);
+    border-radius: 4px;
+    padding: 1.4rem 1.6rem;
+    margin-bottom: 2rem;
+  }
+  .notes-form-row {
+    display: grid; grid-template-columns: 110px 1fr;
+    gap: 0.7rem; margin-bottom: 0.8rem; align-items: center;
+  }
+  .notes-form-row label {
+    font-size: 0.7rem; letter-spacing: 0.15em;
+    color: var(--moss); text-transform: uppercase;
+  }
+  .notes-form input, .notes-form textarea, .notes-form select {
+    font-family: inherit; font-size: 0.9rem;
+    padding: 0.55rem 0.75rem;
+    border: 1px solid var(--line); border-radius: 3px;
+    width: 100%; background: var(--paper);
+    color: var(--ink);
+  }
+  .notes-form select { cursor: pointer; }
+  .notes-form input:focus, .notes-form textarea:focus, .notes-form select:focus { outline: none; border-color: var(--moss); }
+  .notes-form textarea { resize: vertical; min-height: 60px; }
+  .notes-form .btn-add {
+    background: var(--moss); color: white; border: none;
+    padding: 0.6rem 1.5rem; font-family: inherit; font-size: 0.78rem;
+    letter-spacing: 0.18em; cursor: pointer; border-radius: 3px;
+    margin-top: 0.3rem;
+  }
+  .notes-form .btn-add:hover { background: #3a4a2c; }
+  .notes-list-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem; color: var(--moss);
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 0.4rem; margin-bottom: 0.8rem;
+    font-style: italic;
+  }
+  .notes-list-title span {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem; color: var(--muted);
+    letter-spacing: 0.15em; font-style: normal;
+    margin-left: 0.5rem;
+  }
+  .notes-list { display: flex; flex-direction: column; gap: 0.5rem; }
+  .note-card {
+    display: grid; grid-template-columns: 90px 1fr 28px;
+    gap: 0.9rem; padding: 0.8rem 1rem;
+    background: white;
+    border-left: 3px solid var(--moss);
+    border-radius: 2px;
+    align-items: center;
+  }
+  .note-card .note-date {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem; color: var(--moss);
+    font-style: italic;
+  }
+  .note-card .note-body h5 { font-size: 0.95rem; font-weight: 400; }
+  .note-card .note-body p { font-size: 0.8rem; color: #666; margin-top: 0.15rem; }
+  .note-card .note-delete {
+    background: transparent; border: none;
+    color: #ccc; font-size: 1.1rem; cursor: pointer;
+    padding: 0.2rem 0.4rem; line-height: 1;
+  }
+  .note-card .note-delete:hover { color: var(--maple); }
+  .notes-empty {
+    text-align: center; padding: 1.5rem;
+    color: var(--muted); font-style: italic;
+    font-size: 0.85rem;
+  }
+  @media(max-width: 600px) {
+    .notes-form-row { grid-template-columns: 1fr; gap: 0.3rem; }
+    .note-card { grid-template-columns: 80px 1fr 24px; gap: 0.5rem; padding: 0.7rem 0.8rem; }
+  }
+
+  /* BUDGET */
+  .budget-strip { max-width: 900px; margin: 0 auto; padding: 0 1.5rem 5rem; }
+  .budget-header { text-align: center; margin-bottom: 2rem; }
+  .budget-header .jp-mark { color: var(--maple); font-size: 0.8rem; letter-spacing: 0.5em; margin-bottom: 0.5rem; }
+  .budget-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-style: italic; }
+  .budget-header .subtitle { font-size: 0.75rem; letter-spacing: 0.25em; color: var(--muted); text-transform: uppercase; margin-top: 0.3rem; }
+  .budget-totals {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem; margin-bottom: 1.8rem;
+  }
+  .budget-total-card {
+    background: var(--ink); color: var(--paper);
+    padding: 1.2rem 1.4rem; border-radius: 4px;
+  }
+  .budget-total-card .label {
+    font-size: 0.65rem; letter-spacing: 0.3em;
+    color: var(--gold); text-transform: uppercase;
+  }
+  .budget-total-card .amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.1rem; color: var(--paper);
+    margin-top: 0.3rem; line-height: 1;
+  }
+  .budget-total-card .sub {
+    font-size: 0.75rem; color: #aaa; margin-top: 0.3rem;
+  }
+  .budget-form {
+    background: white;
+    border: 2px dashed var(--gold);
+    border-radius: 4px;
+    padding: 1.3rem 1.6rem;
+    margin-bottom: 2rem;
+  }
+  .budget-form .row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0.7rem; margin-bottom: 0.7rem;
+  }
+  .budget-form .row.single { grid-template-columns: 1fr; }
+  .budget-form .field { display: flex; flex-direction: column; gap: 0.25rem; }
+  .budget-form label {
+    font-size: 0.65rem; letter-spacing: 0.18em;
+    color: var(--moss); text-transform: uppercase;
+  }
+  .budget-form input, .budget-form select {
+    font-family: inherit; font-size: 0.9rem;
+    padding: 0.5rem 0.65rem;
+    border: 1px solid var(--line); border-radius: 3px;
+    width: 100%; background: var(--paper);
+    color: var(--ink);
+  }
+  .budget-form select { cursor: pointer; }
+  .budget-form input:focus, .budget-form select:focus { outline: none; border-color: var(--gold); }
+  .budget-form .btn-add {
+    background: var(--moss); color: white; border: none;
+    padding: 0.6rem 1.5rem; font-family: inherit; font-size: 0.78rem;
+    letter-spacing: 0.18em; cursor: pointer; border-radius: 3px;
+    margin-top: 0.5rem;
+  }
+  .budget-form .btn-add:hover { background: #3a4a2c; }
+  .budget-list-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem; color: var(--moss);
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 0.4rem; margin-bottom: 0.8rem;
+    font-style: italic;
+  }
+  .budget-list { display: flex; flex-direction: column; gap: 0.5rem; }
+  .budget-row {
+    display: grid;
+    grid-template-columns: 100px 1fr auto auto 28px;
+    gap: 0.9rem; padding: 0.8rem 1rem;
+    background: white;
+    border-left: 3px solid var(--gold);
+    border-radius: 2px;
+    align-items: center;
+  }
+  .budget-row .b-cat {
+    font-size: 0.65rem; letter-spacing: 0.15em;
+    color: var(--maple); text-transform: uppercase;
+  }
+  .budget-row .b-label { font-size: 0.92rem; }
+  .budget-row .b-local {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem; color: var(--ink);
+    text-align: right; white-space: nowrap;
+  }
+  .budget-row .b-nis {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem; color: var(--moss);
+    text-align: right; white-space: nowrap;
+    font-style: italic;
+  }
+  .budget-row .b-delete {
+    background: transparent; border: none;
+    color: #ccc; font-size: 1.1rem; cursor: pointer;
+    padding: 0.2rem 0.4rem; line-height: 1;
+  }
+  .budget-row .b-delete:hover { color: var(--maple); }
+  .budget-row.locked .b-delete { visibility: hidden; }
+  .budget-rates {
+    margin-top: 1.5rem; padding: 0.8rem 1rem;
+    background: #fff8ef; border-left: 2px solid var(--gold);
+    font-size: 0.78rem; color: #777; border-radius: 2px;
+  }
+  .budget-rates strong { color: var(--ink); font-weight: 500; }
+  @media(max-width: 700px) {
+    .budget-totals { grid-template-columns: 1fr; }
+    .budget-form .row { grid-template-columns: 1fr; }
+    .budget-row { grid-template-columns: 1fr auto 24px; gap: 0.4rem; padding: 0.7rem 0.8rem; }
+    .budget-row .b-cat { font-size: 0.6rem; }
+    .budget-row .b-local { display: none; }
+  }
+
+  footer {
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    color: var(--muted);
+    font-size: 0.75rem; letter-spacing: 0.2em;
+    border-top: 1px solid var(--line);
+  }
+  footer .jp { color: var(--maple); font-size: 1rem; letter-spacing: 0.3em; margin-bottom: 0.5rem; }
+
+  @media(max-width: 700px) {
+    .sched-item { grid-template-columns: 24px 1fr 28px; gap: 0.6rem; padding: 0.7rem 0.8rem; }
+    .sched-step { font-size: 1rem; }
+    .modal-body { padding: 1.2rem; }
+    .modal-header { padding: 1.3rem; }
+    .modal-header h2 { font-size: 1.3rem; }
+    .cell-date { font-size: 1.1rem; }
+    .cell-loc { display: none; }
+    .flight-leg { grid-template-columns: 1fr; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="top">
+  <div class="brand"><span class="jp-mark jp">蜜月</span>Ran & Shana</div>
+  <div class="nav-buttons">
+    <button class="nav-btn" onclick="scrollTo2('calendar')">Calendar</button>
+    <button class="nav-btn" onclick="scrollTo2('roadtrip')">Road Trip</button>
+    <button class="nav-btn" onclick="scrollTo2('flights')">Flights</button>
+    <button class="nav-btn" onclick="scrollTo2('budget')">Budget</button>
+    <button class="nav-btn" onclick="scrollTo2('notes')">Notes</button>
+  </div>
+</nav>
+
+<!-- HERO — minimal -->
+<header class="hero">
+  <div class="jp-title jp">日本　蜜月</div>
+  <h1>Ran <span class="ampersand">&</span> Shana</h1>
+  <div class="subtitle">A Japan Honeymoon</div>
+  <div class="dates"><strong>Oct 30</strong> — <strong>Nov 26, 2026</strong> · 28 days</div>
+</header>
+
+<!-- CALENDAR — the centerpiece -->
+<main id="calendar">
+  <div class="calendar-month">
+    <div class="month-label">The Trip · 28 Days · Oct – Nov 2026</div>
+    <div class="weekdays">
+      <div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div><div>Sun</div>
+    </div>
+    <div class="cal-grid" id="cal-trip"></div>
+  </div>
+</main>
+
+<!-- FLIGHTS — compact strip -->
+<section id="flights" class="flight-strip">
+  <div class="flight-card">
+    <h3>✈️ Outbound · Etihad Airways</h3>
+
+    <div class="flight-leg">
+      <div class="airport">
+        <div class="code">TLV</div>
+        <div class="city">Tel Aviv · Ben Gurion T3</div>
+        <div class="time">14:10</div>
+        <div class="date-tag">Fri 30 Oct</div>
+      </div>
+      <div class="middle">
+        <div class="plane">→</div>
+        <div>EY594 · 3h 00m</div>
+        <div>Airbus A321</div>
+      </div>
+      <div class="airport">
+        <div class="code">AUH</div>
+        <div class="city">Abu Dhabi · Terminal A</div>
+        <div class="time">19:10</div>
+        <div class="date-tag">Fri 30 Oct</div>
+      </div>
+    </div>
+
+    <div class="flight-leg">
+      <div class="airport">
+        <div class="code">AUH</div>
+        <div class="city">Abu Dhabi · Terminal A</div>
+        <div class="time">21:05</div>
+        <div class="date-tag">Fri 30 Oct</div>
+      </div>
+      <div class="middle">
+        <div class="plane">→</div>
+        <div>EY800 · 9h 35m</div>
+        <div>Airbus A350-1000</div>
+      </div>
+      <div class="airport">
+        <div class="code">NRT</div>
+        <div class="city">Tokyo · Narita T1</div>
+        <div class="time">11:40</div>
+        <div class="date-tag">Sat 31 Oct</div>
+      </div>
+    </div>
+
+    <div class="booking-ref">Booking reference: <strong>8EY6EY</strong> · Economy (outbound only)</div>
+  </div>
+
+  <div class="flight-card" style="margin-top: 1.5rem;">
+    <h3>✈️ Return · Bangkok → Tel Aviv · TBD</h3>
+
+    <div class="flight-leg">
+      <div class="airport">
+        <div class="code">BKK</div>
+        <div class="city">Bangkok · Suvarnabhumi</div>
+        <div class="time">TBD</div>
+        <div class="date-tag">Thu 26 Nov</div>
+      </div>
+      <div class="middle">
+        <div class="plane">→</div>
+        <div>Airline TBD</div>
+        <div>To be booked</div>
+      </div>
+      <div class="airport">
+        <div class="code">TLV</div>
+        <div class="city">Tel Aviv · Ben Gurion T3</div>
+        <div class="time">TBD</div>
+        <div class="date-tag">Thu/Fri 26-27 Nov</div>
+      </div>
+    </div>
+
+    <div class="booking-ref">Return flight not booked yet — <strong>book BKK → TLV</strong></div>
+  </div>
+</section>
+
+<!-- ROAD TRIP — visual itinerary -->
+<section id="roadtrip" class="roadmap-strip">
+  <div class="roadmap-header">
+    <div class="jp-mark jp">道の旅</div>
+    <h2>The Road Trip</h2>
+    <div class="subtitle">Tel Aviv → Japan → Thailand → Home · 28 days</div>
+  </div>
+  <div class="roadmap" id="roadmap-container"></div>
+</section>
+
+<!-- BUDGET -->
+<section id="budget" class="budget-strip">
+  <div class="budget-header">
+    <div class="jp-mark jp">予算</div>
+    <h2>Budget</h2>
+    <div class="subtitle">Local currency · auto-converted to NIS</div>
+  </div>
+
+  <div class="budget-totals">
+    <div class="budget-total-card">
+      <div class="label">Total · NIS</div>
+      <div class="amount" id="budget-total-nis">₪0</div>
+      <div class="sub" id="budget-total-count">0 line items</div>
+    </div>
+    <div class="budget-total-card" style="background:var(--moss);">
+      <div class="label" style="color:#e8d9a8;">By currency</div>
+      <div class="sub" id="budget-totals-by-ccy" style="color:#fff; font-size:0.9rem; margin-top:0.5rem; line-height:1.5;">—</div>
+    </div>
+  </div>
+
+  <div class="budget-form">
+    <div class="row">
+      <div class="field">
+        <label>Category</label>
+        <select id="b-category">
+          <option>Flights</option>
+          <option>Accommodation</option>
+          <option>Transport</option>
+          <option>Food</option>
+          <option>Activities</option>
+          <option>Shopping</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Currency</label>
+        <select id="b-currency">
+          <option value="USD">USD · $</option>
+          <option value="JPY">JPY · ¥</option>
+          <option value="EUR">EUR · €</option>
+          <option value="ILS">NIS · ₪</option>
+          <option value="AED">AED · د.إ</option>
+        </select>
+      </div>
+    </div>
+    <div class="row single">
+      <div class="field">
+        <label>What is it</label>
+        <input type="text" id="b-label" placeholder="e.g. Hotel · 5 nights · Deluxe room" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="field">
+        <label>Amount</label>
+        <input type="number" id="b-amount" step="0.01" min="0" placeholder="0.00" />
+      </div>
+      <div class="field" style="justify-content:flex-end;">
+        <button class="btn-add" onclick="saveExpense()">ADD EXPENSE</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="budget-list-title">All expenses</div>
+  <div class="budget-list" id="budget-list"></div>
+
+  <div class="budget-rates">
+    <strong>Rates used:</strong> <span id="budget-rates-display"></span>
+    &nbsp; · &nbsp; These are approximate. Edit <code>FX_RATES</code> in the HTML to refresh.
+  </div>
+</section>
+
+<!-- NOTES FOR CLAUDE — inbox -->
+<section id="notes" class="notes-strip">
+  <div class="notes-header">
+    <div class="jp-mark jp">メモ</div>
+    <h2>Notes for Claude</h2>
+    <div class="subtitle">Drop ideas here · Claude inserts them into the matching day next conversation</div>
+  </div>
+
+  <div class="notes-form">
+    <div class="notes-form-row">
+      <label>Day</label>
+      <select id="note-date"></select>
+    </div>
+    <div class="notes-form-row">
+      <label>What to add</label>
+      <input type="text" id="note-title" placeholder="e.g. Visit Kinkaku-ji at sunrise" />
+    </div>
+    <div class="notes-form-row">
+      <label>Details</label>
+      <textarea id="note-desc" placeholder="Optional · time of day, why, links, etc."></textarea>
+    </div>
+    <button class="btn-add" onclick="saveNote()">SAVE NOTE</button>
+  </div>
+
+  <div class="notes-list-wrap">
+    <div class="notes-list-title">Pending notes <span id="notes-count"></span></div>
+    <div class="notes-list" id="notes-list"></div>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this) closeModal()">
+  <div class="modal" id="modalContent"></div>
+</div>
+
+<footer>
+  <div class="jp">幸せな結婚</div>
+  Curated for Ran & Shana · Japan Planner · 2026
+</footer>
+
+<script>
+/* ============================================================================
+   TRIP DATA — first 3 days. Updated for actual booking (Oct 30 takeoff, Economy).
+   ============================================================================ */
+const TRIP_DATA = {
+  "2026-10-30": {
+    "date": "2026-10-30",
+    "dayLabel": "Day 1 — Flight Day",
+    "location": "TLV → Abu Dhabi (in transit)",
+    "hotel": null,
+    "hotelNote": "Sleeping on the AUH → NRT flight (Airbus A350, ~9h35m). Pick aisle/window seats together via Manage Booking on etihad.com.",
+    "flightInfo": {
+      "leg1": "EY594 · TLV 14:10 → AUH 19:10 (3h 00m, A321)",
+      "leg2": "EY800 · AUH 21:05 → NRT 11:40+1 (9h 35m, A350-1000)"
+    },
+    "schedule": [
+      {"time": "10:30–13:30", "title": "Pre-flight prep & check-in (TLV T3)", "description": "Final check at home: passports (6+ months validity), Visit Japan Web QR screenshots, hotel confirmations, Japan eSIM downloaded, universal adapter (Type A, 100V), ~$200 USD + ¥30,000 cash. Arrive Ben Gurion T3 by 11:00 — honeymoon photo under the airport sign. Etihad check-in by 11:30 (drop 23kg + 7kg cabin, both boarding passes issued here), then security + biometric passport ~30–45 min. Use the rest of the time for coffee + light snack in T3, or pay for the Dan Lounge (~$50pp, food + showers) / Priority Pass. Don't eat heavy — meals on board.", "link": "https://www.iaa.gov.il/en/airports/ben-gurion/"},
+      {"time": "13:30–19:10", "title": "Fly TLV → Abu Dhabi (EY594)", "description": "Boarding ~13:30, take-off 14:10. 3h on Airbus A321 (narrow-body — pick seats together via Manage Booking). Etihad serves a hot meal in Economy; skip alcohol, drink water. Set watch +2h to AUH time (UTC+4). Land 19:10 at Zayed International Terminal A — follow 'Transfers' signs (no immigration), quick transit security re-check.", "link": "https://www.etihad.com/en/manage"},
+      {"time": "19:10–21:05", "title": "Abu Dhabi transit · Terminal A", "description": "~2h layover at the stunning new Terminal A (opened Nov 2023). Dinner at the food courts (Jones the Grocer, Pret, Tim Hortons) or pay for Plaza Premium Lounge (~$70pp, includes showers + food — worth it before the 9h flight). Brush teeth, change into comfy clothes. Walk to gate by 20:30 — the terminal is large, allow 15 min.", "link": "https://www.abudhabiairport.ae/en"},
+      {"time": "21:05 →", "title": "AUH → Tokyo Narita (EY800) · Sleep mode", "description": "Take-off 21:05, 9h 35m on A350-1000 (latest cabin product even in Economy: 3-3-3, USB-A + USB-C + power, 4K screens). Set watch to Tokyo time (UTC+9) — it's already ~02:00 there. Goal = SLEEP: skip the dinner service (you just ate), ask crew for blanket + pillow + eye mask, take melatonin (1–3mg), compression socks + noise-cancelling headphones, recline as much as Economy allows. Crew wakes you ~90 min before landing for breakfast.", "link": "https://www.narita-airport.jp/en"}
+    ]
+  },
+  "2026-10-31": {
+    "date": "2026-10-31",
+    "dayLabel": "Day 2 — Welcome to Tokyo (Halloween)",
+    "location": "Tokyo · Otemachi",
+    "hotel": null,
+    "schedule": [
+      {"time": "15:00–17:00", "title": "Imperial Palace East Gardens — jet-lag walk", "description": "Free, open until 17:00 in late Oct. Daylight is critical for resetting the circadian rhythm. Enter via Otemon Gate, ~45 min loop past the Edo Castle keep ruins. Early autumn maples.", "link": "https://sankan.kunaicho.go.jp/english/guide/higashigyoen.html"}
+    ]
+  },
+  "2026-11-01": {
+    "date": "2026-11-01",
+    "dayLabel": "Day 3 — Sunday in Tokyo · Flea market + teamLab",
+    "location": "Tokyo · Shinagawa, Toyosu, Shinjuku, Ginza",
+    "hotel": null,
+    "schedule": [
+      {"time": "09:00–13:00", "title": "Oi Racecourse Flea Market (大井競馬場フリマ)", "description": "One of Tokyo's largest open-air flea markets, in the parking lot of Oi Keibajo (Shinagawa). 600+ stalls — vintage kimono and obi, antique ceramics, old film cameras, Showa-era toys, Hello Kitty, leather, glassware, retro clothing. Bargain hard but politely. Cash only — bring plenty of ¥100/500/1000 notes. ⚠️ Confirm the date is a market day on recyclelifecenter.com before going. Access: ~10 min on the Tokyo Monorail from Hamamatsucho to Oi-Keibajo-mae, then 3-min walk.", "link": "https://www.recyclelifecenter.com/"},
+      {"time": "14:30–17:00", "title": "teamLab Planets TOKYO (Toyosu)", "description": "Book the 14:30 entry slot 2+ weeks ahead via the official site. Barefoot immersive digital art — 7 rooms including knee-deep koi water, Infinite Crystal Universe, the Floating Flower Garden mirror room (peak honeymoon photo). Lockers + phone-drying provided. Women in skirts get wrap shorts — pants are easier. Toyosu is just one stop north of Oi on the Yurikamome / monorail axis — short transfer.", "link": "https://www.teamlab.art/e/planets/"},
+      {"time": "18:30–20:00", "title": "Sunset cocktails — New York Bar (Park Hyatt 52F)", "description": "The Lost in Translation bar — floor-to-ceiling windows toward Mt Fuji at sunset, live jazz from 20:00, signature Hyatt Martini. Arrive before 19:00 to skip the cover charge. Dress code: smart-casual, no shorts/sneakers.", "link": "https://www.tokyo.park.hyatt.com/en/hotel/dining/NewYorkBar.html"},
+      {"time": "22:30", "title": "Ginza nightscape walk", "description": "Slow 15-min stroll past the illuminated Wako clock tower, Ginza Six, Chanel/Hermès glass facades. Optional nightcap at Bar High Five (Ginza speakeasy).", "link": "https://www.ginza.jp/en"}
+    ]
+  },
+  "2026-11-02": {
+    "date": "2026-11-02",
+    "dayLabel": "Day 4 — Shibuya & Harajuku",
+    "location": "Tokyo · Meiji Jingu, Harajuku, Omotesando, Shibuya",
+    "hotel": null,
+    "schedule": [
+      {"time": "09:45–11:00", "title": "Meiji Jingu Shrine", "description": "Tokyo's grandest Shinto shrine, dedicated to Emperor Meiji. Walk the gravel forest path under the giant torii gates, see the wall of sake barrels, write a wish on an ema tablet at the main hall. ~75 min. Free; the Inner Garden (¥500) is optional and lovely in autumn. Most peaceful before 10:30.", "link": "https://www.meijijingu.or.jp/en/"},
+      {"time": "11:00–12:45", "title": "Takeshita Street + Omotesando architecture walk", "description": "Cross into the kawaii capital — Takeshita-dori for ~30 min of rainbow cotton candy, vintage shops, kitsch. Then onto Omotesando — Tokyo's Champs-Élysées, an open-air museum of starchitect flagships: Tadao Ando's Omotesando Hills, Herzog & de Meuron's Prada, Toyo Ito's Tod's, SANAA's Dior. Just look up.", "link": "https://www.timeout.com/tokyo/things-to-do/best-things-to-do-in-omotesando"},
+      {"time": "14:15–16:30", "title": "Nezu Museum + Cat Street vintage shopping", "description": "Kengo Kuma-designed Nezu Museum: pre-modern East Asian art + a hidden Japanese garden with stone lanterns, teahouse and koi ponds turning red and gold in early November. ⚠️ CLOSED MONDAYS — if so, swap Day 4 and Day 5, or substitute with Cat Street boutiques (atmos, BAPE, Kith Tokyo) + Comme des Garçons.", "link": "https://www.nezu-muse.or.jp/en/"},
+      {"time": "16:30–19:00", "title": "Shibuya Sky sunset + Scramble + Hachiko", "description": "Pre-book the 16:00 entry slot at Shibuya Sky — open-air rooftop atop Scramble Square, 229m up. Sunset ~16:40 turns the sky pink over Tokyo Tower with Mt Fuji silhouetted on clear days (¥2,500pp online). After: descend into the world's busiest pedestrian crossing — cross it twice, once with the wave + once for the photo. Visit the Hachiko statue. Best photo angle: Starbucks Tsutaya window above the crossing. Light jacket — rooftop gets windy after sunset.", "link": "https://www.shibuya-scramble-square.com/sky/en/"},
+      {"time": "21:30–23:00", "title": "Cocktails — The SG Club (Shibuya)", "description": "5-min walk from Shibuya Station. World's 50 Best Bars institution by Shingo Gokan — casual 'Guzzle' upstairs, intimate 'Sip' lounge downstairs. Order the Pickled Martini or Kakigori cocktail.", "link": "https://sg-management.jp/sgclub/"}
+    ]
+  },
+  "2026-11-03": {
+    "date": "2026-11-03",
+    "dayLabel": "Day 5 — Mario Kart, Akihabara & Shinjuku Neon",
+    "location": "Tokyo · Akihabara, Shinjuku",
+    "hotel": null,
+    "schedule": [
+      {"time": "10:00–12:15", "title": "Street Kart Akihabara — real-life Mario Kart", "description": "Drive go-karts on public Tokyo streets dressed as Mario, Luigi, Princess Peach, Yoshi (costumes free). ~2h including briefing, costume selection, guided convoy through Akihabara → Tokyo Tower → Rainbow Bridge views. GoPro rental (~¥1,500) — worth it for honeymoon footage. ¥10,000–13,000pp. Book 1–2 weeks ahead (Nov 3 = Culture Day, sells out). Speeds capped ~60 km/h — stay in convoy, follow hand signals. No driving in rain. ⚠️ BRING: passports + International Driving Permits (Geneva 1949 from MEMSI Israel — Israeli license alone is NOT accepted; without IDP = passenger only or refused entirely). Wear closed-toe shoes, long sleeves + light gloves (open karts get cold at 12–15°C).", "link": "https://kart.st/"},
+      {"time": "14:00–17:00", "title": "Akihabara mega-shopping spree", "description": "Walk Chuo-dori through Akihabara's full sensory overload: (1) Don Quijote — 8-floor mega-store, snacks/cosmetics/electronics/KitKat flavors crammed floor-to-ceiling, AKB48 idol theatre on top. (2) Yodobashi Camera — Japan's largest electronics store, 9 floors. (3) Mandarake Complex — 8 floors of vintage manga, anime cels, figurines. (4) Super Potato Retro-kan — retro video-game museum/shop. (5) Akihabara Gachapon Kaikan — 500+ capsule machines (¥300–500 each, perfect souvenirs). (6) GiGO Arcade Purikura photo booth — eye-enlarging couple photos, ~¥500/session. Bring passports for tax-free purchases over ¥5,500.", "link": "https://www.donki.com/en/"},
+      {"time": "17:00–19:00", "title": "Tocho sunset + TOKYO Night & Light show (Shinjuku)", "description": "FREE 202m panoramic view of Tokyo from the Tokyo Metropolitan Government Observation Deck — Mt Fuji visible on clear days. Time it for sunset ~16:45 + city lights. Bonus: 'TOKYO Night & Light' Guinness-record projection mapping on the building exterior runs every 30 min after dark — watch from the plaza below.", "link": "https://www.gotokyo.org/en/spot/24/index.html"},
+      {"time": "19:30–21:15", "title": "Samurai Restaurant — neon cabaret show", "description": "90-min Robot Restaurant successor: over-the-top neon spectacle with samurai battles, taiko drummers, giant robots, dragons, J-pop dancers and lasers. ¥9,000–11,000pp. Pure Tokyo kitsch — book ahead via Klook, arrive 15 min early.", "link": "https://samurai-restaurant.tokyo/"},
+      {"time": "21:15–23:00", "title": "Golden Gai bar-hopping", "description": "Labyrinth of ~200 themed bars, each fitting 5–8 people. Hop 2–3 spots: Albatross G (gothic-glam chandelier interior, English menu, ¥500 cover), Open Book (lemon-sour specialist, literary vibe), Death Match in Hell (heavy metal). Always ask cover charge before sitting (¥500–1,500). Ignore Kabukicho touts politely.", "link": "https://www.albatross-5.com/golden_gai/"}
+    ]
+  },
+  "2026-11-04": {
+    "date": "2026-11-04",
+    "dayLabel": "Day 6 — Tsukiji & Asakusa",
+    "location": "Tokyo · Tsukiji, Asakusa",
+    "hotel": null,
+    "schedule": [
+      {"time": "08:30–11:00", "title": "Tsukiji Outer Market private food tour", "description": "2.5h private guided walk through the outer market: tamagoyaki on a stick, uni + otoro, fresh dashi tasting, matcha, A5 wagyu skewers, strawberry mochi. Arigato Japan and Ninja Food Tours are top-rated operators. Tsukiji is a MORNING market — most stalls close by 13:00.", "link": "https://www.arigatojapan.co.jp/tsukiji-fish-market-food-tour/"},
+      {"time": "11:00–13:00", "title": "Senso-ji Temple & Nakamise-dori (Asakusa)", "description": "Enter through the red Kaminarimon (Thunder Gate), stroll Nakamise shopping street, arrive at Senso-ji — Tokyo's oldest temple (founded 645 AD). Draw an omikuji fortune together, light incense for good luck on the marriage. Photo at the five-story pagoda.", "link": "https://www.senso-ji.jp/english/"}
+    ]
+  },
+  "2026-11-05": {
+    "date": "2026-11-05",
+    "dayLabel": "Day 7 — Nikko Day Trip",
+    "location": "Nikko · Toshogu, Kegon Falls, Lake Chuzenji",
+    "hotel": null,
+    "hotelNote": "Return to Tokyo same evening.",
+    "schedule": []
+  },
+  "2026-11-06": {
+    "date": "2026-11-06",
+    "dayLabel": "Day 8 — Hakone Loop + Ryokan",
+    "location": "Hakone · Moto-Hakone, Lake Ashi, Owakudani, Gora, Hakone-Yumoto",
+    "hotel": null,
+    "hotelNote": "Stay at a ryokan tonight — private onsen + kaiseki dinner.",
+    "schedule": [
+      {"time": "07:30–09:00", "title": "Romance Car · Shinjuku → Hakone-Yumoto", "description": "Buy the Hakone Free Pass (¥6,100/person, 2-day) + Romance Car surcharge (¥1,200 each way) at the Odakyu Sightseeing Service Center, Shinjuku West Exit. The Romance Car is a comfortable limited express — try to get the panorama seats in the front car. 85 min ride. Digital Freepass available on the Odakyu app.", "link": "https://www.odakyu.jp/english/passes/hakone/", "maps": "Odakyu Shinjuku Station"},
+      {"time": "09:15–09:45", "title": "Bus to Old Tokaido Road + Amazake-chaya", "description": "Take the Hakone Tozan Bus from Hakone-Yumoto toward Moto-Hakone. Get off at the Amazake-chaya stop. This 400-year-old teahouse sits on the ancient Tokaido highway — order amazake (sweet fermented rice drink, non-alcoholic) and toasted mochi with kinako. ¥500. A beautiful, quiet start to the day surrounded by cedar forest.", "link": "https://www.japan-guide.com/e/e5210.html", "maps": "Amazake-chaya Hakone"},
+      {"time": "09:45–10:15", "title": "Walk the Old Tokaido Cedar Avenue", "description": "From Amazake-chaya, walk the historic section of the Tokaido road lined with 300-400 year old cedar trees forming a majestic canopy. This was the main highway between Edo (Tokyo) and Kyoto during the Edo period. A peaceful 20-30 min walk downhill to Moto-Hakone — hold hands under the ancient trees.", "maps": "Old Tokaido Cedar Avenue Hakone"},
+      {"time": "10:15–11:00", "title": "Hakone Shrine (箱根神社)", "description": "Hidden in ancient cedar forest by the lake. Walk the mossy stone steps to the vermillion main hall, then descend to the famous Heiwa no Torii — the red gate standing in Lake Ashi. Queue for the torii photo can be 10-20 min on busy days (weekday = shorter). Free entry. Write your wishes on an ema board together.", "link": "https://hakonejinja.or.jp/", "maps": "Hakone Shrine"},
+      {"time": "11:00–11:30", "title": "Cafe Narukawa Art Museum (成川美術館)", "description": "Right across from the Moto-Hakone pier. Contemporary Japanese painting museum with a panoramic cafe overlooking Lake Ashi, the floating torii, and Mount Fuji. Skip the full museum if short on time — the cafe alone is worth it for the view. One of the best photo spots in Hakone. ¥1,300 with Free Pass (or free if cafe only).", "link": "http://www.narukawamuseum.co.jp/en/", "maps": "Narukawa Art Museum Hakone"},
+      {"time": "11:45–12:30", "title": "Hakone Sightseeing Cruise · Moto-Hakone → Togendai", "description": "Board the 'pirate ship' at Moto-Hakone port (covered by Free Pass). 30-40 min cruise across Lake Ashi. On clear days, Mount Fuji rises behind the lake — one of Japan's most iconic views. Sit on the upper deck together. Look back at the red torii of Hakone Shrine from the water.", "link": "https://www.hakone-kankosen.co.jp/foreign/en/", "maps": "Moto-Hakone Port"},
+      {"time": "12:00–13:00", "title": "Owakudani — Great Boiling Valley", "description": "From Togendai, take the Hakone Ropeway (aerial gondola) up to Owakudani. Dramatic volcanic valley with sulfur vents steaming from the earth. Buy and eat the famous kuro-tamago (black eggs) — boiled in sulfurous hot springs, shells turn jet black. Legend says each adds 7 years to your life! ¥500 for 5 eggs. Best Mount Fuji views are from here in the morning. Check the webcam before going — clouds often build after 11:00.", "link": "https://www.owakudani.com/en/", "maps": "Owakudani"},
+      {"time": "13:15–13:45", "title": "Chisuji Falls (千条の滝)", "description": "Get off the Tozan Railway at Kowakudani station — 20 min walk through the forest to this beautiful waterfall. 'Chisuji' means '1000 lines' — water cascades in thin streams across a 20-meter wide rock face. Free, peaceful, and stunning with early November autumn colors. A quiet moment in nature together before the museum.", "maps": "Chisuji Falls Hakone"},
+      {"time": "14:00–15:30", "title": "Hakone Open-Air Museum (彫刻の森美術館)", "description": "Take the ropeway down to Sounzan, then cable car to Gora, then one stop on the Tozan Railway to Chokoku-no-Mori station. Stunning outdoor sculpture garden with works by Picasso, Henry Moore, Nikki de Saint Phalle spread across rolling hills with mountain views. The stained-glass tower is incredible. Indoor Picasso collection. ¥1,600/person (discount with Free Pass). Allow 1-1.5 hours.", "link": "https://www.hakone-oam.or.jp/en/", "maps": "Hakone Open Air Museum"},
+      {"time": "15:30–17:00", "title": "Hakone Yuryo — couples onsen", "description": "Take the Tozan Railway back to Hakone-Yumoto, then the free shuttle bus to Hakone Yuryo. Modern onsen facility with beautiful indoor and outdoor baths surrounded by forest. Private couple baths available (reserve ahead, ~¥3,000-5,000 extra). Entry ¥1,500/person. The perfect way to relax after the loop — soak in hot springs together with mountain views.", "link": "https://www.hakoneyuryo.jp/english/", "maps": "Hakone Yuryo"},
+      {"time": "17:00–17:45", "title": "Hakone-Yumoto town stroll", "description": "Walk through the main street of Hakone-Yumoto — souvenir shops, manju steamed buns, dried fish snacks, kamaboko (fish cake). Try Hatsuhana for their famous handmade soba noodles (spring water soba, ~¥1,200) or Tamura Ginkatsutei for tofu katsu. Pick up Hakone wooden marquetry (yosegi-zaiku) as a souvenir.", "maps": "Hakone-Yumoto Station"},
+      {"time": "18:00–19:25", "title": "Romance Car back · Hakone-Yumoto → Shinjuku", "description": "Catch the Romance Car back to Shinjuku. 85 min — relax, look at your photos from the day, nap if needed. Arrive Shinjuku ~19:25. Grab dinner in Shinjuku or head back to the hotel.", "maps": "Hakone-Yumoto Station"}
+    ]
+  }
+};
+
+/* Placeholder hints — to be replaced as agents build them */
+const DAY_HINTS = {
+  "2026-11-07": "Travel · Takayama",
+  "2026-11-08": "Takayama",
+  "2026-11-09": "Takayama",
+  "2026-11-10": "Travel · Kyoto",
+  "2026-11-11": "Kyoto",
+  "2026-11-12": "Kyoto",
+  "2026-11-13": "Kyoto",
+  "2026-11-14": "Travel · Hiroshima",
+  "2026-11-15": "Miyajima",
+  "2026-11-16": "Shimanami Kaido",
+  "2026-11-17": "Shimanami Kaido",
+  "2026-11-18": "Travel · Osaka",
+  "2026-11-19": "Osaka → Thailand",
+  "2026-11-20": "Koh Samui · Beach & relax",
+  "2026-11-21": "Koh Samui · Beach & relax",
+  "2026-11-22": "Koh Samui · Beach & relax",
+  "2026-11-23": "Koh Samui · Beach & relax",
+  "2026-11-24": "Koh Samui · Beach & relax",
+  "2026-11-25": "Koh Samui → Bangkok",
+  "2026-11-26": "Flight home · BKK → TLV"
+};
+
+const TRIP_START = "2026-10-30";
+const TRIP_END = "2026-11-26";
+
+/* ============================================================================
+   CALENDAR RENDERING
+   ============================================================================ */
+function pad(n) { return n < 10 ? '0' + n : '' + n; }
+function dateKey(y, m, d) { return y + '-' + pad(m) + '-' + pad(d); }
+
+const MONTH_ABBR = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+function renderTripCalendar(containerId) {
+  const container = document.getElementById(containerId);
+  const [sy, sm, sd] = TRIP_START.split('-').map(Number);
+  const [ey, em, ed] = TRIP_END.split('-').map(Number);
+  const start = new Date(sy, sm - 1, sd);
+  const end = new Date(ey, em - 1, ed);
+
+  const offset = (start.getDay() + 6) % 7;
+  let html = '';
+  for (let i = 0; i < offset; i++) html += '<div class="cal-cell empty"></div>';
+
+  for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+    const y = d.getFullYear();
+    const m = d.getMonth() + 1;
+    const dd = d.getDate();
+    const key = dateKey(y, m, dd);
+    const monthLabel = MONTH_ABBR[d.getMonth()];
+    const isMonthStart = (dd === 1 && key !== TRIP_START);
+    const monthStartClass = isMonthStart ? ' month-start' : '';
+
+    if (TRIP_DATA[key]) {
+      const data = TRIP_DATA[key];
+      const loc = data.location.split('·')[0].trim().split('→')[0].trim();
+      html += `<div class="cal-cell has-plan${monthStartClass}" onclick="openDay('${key}')">
+        <div class="cell-icon">📖</div>
+        <div class="cell-date">${dd}<span class="cell-month">${monthLabel}</span></div>
+        <div class="cell-loc">${loc}</div>
+        <div class="cell-tag">Open plan</div>
+      </div>`;
+    } else {
+      const hint = DAY_HINTS[key] || '';
+      html += `<div class="cal-cell placeholder${monthStartClass}" onclick="openDay('${key}')">
+        <div class="cell-date">${dd}<span class="cell-month">${monthLabel}</span></div>
+        <div class="cell-loc">${hint}</div>
+        <div class="cell-tag">+ add</div>
+      </div>`;
+    }
+  }
+  container.innerHTML = html;
+}
+
+renderTripCalendar('cal-trip');
+
+/* ============================================================================
+   MODAL
+   ============================================================================ */
+function formatDate(key) {
+  const [y, m, d] = key.split('-').map(Number);
+  return new Date(y, m - 1, d).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+}
+
+function escapeHtml(s) {
+  if (!s) return '';
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+function openDay(key) {
+  const data = TRIP_DATA[key] || {
+    date: key, dayLabel: 'Unplanned Day',
+    location: DAY_HINTS[key] || 'To be planned',
+    hotel: null,
+    hotelNote: 'This day has not been planned yet.',
+    schedule: []
+  };
+  renderModal(data);
+  document.getElementById('modalOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+function renderModal(data) {
+  const items = data.schedule || [];
+
+  let scheduleHtml = '';
+  if (items.length === 0) {
+    scheduleHtml = '<p style="color:#888; font-style:italic; text-align:center; padding:1rem;">No activities planned yet for this day.</p>';
+  } else {
+    scheduleHtml = '<div class="schedule">' + items.map(item => {
+      const mapsQuery = item.maps || item.title || '';
+      const mapsUrl = mapsQuery ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapsQuery)}` : null;
+      return `
+      <div class="sched-item">
+        <div class="sched-step"></div>
+        <div class="sched-content">
+          <h4>${escapeHtml(item.title || '')}</h4>
+        </div>
+        <div class="sched-actions">
+          ${mapsUrl ? `<a class="sched-maps" href="${escapeHtml(mapsUrl)}" target="_blank" rel="noopener" title="Open in Google Maps">📍</a>` : ''}
+        </div>
+      </div>`;
+    }).join('') + '</div>';
+  }
+
+  let flightHtml = '';
+  if (data.flightInfo) {
+    flightHtml = `<div class="hotel-box" style="border-left-color: var(--maple); background:#1a2332; color:white;">
+      <div class="hotel-name" style="color:white;">✈️ Flight Details</div>
+      <div style="font-size:0.85rem; color:#ddd; margin-top:0.3rem;">${escapeHtml(data.flightInfo.leg1)}</div>
+      <div style="font-size:0.85rem; color:#ddd;">${escapeHtml(data.flightInfo.leg2)}</div>
+    </div>`;
+  }
+
+  let areaHtml = '';
+  if (data.location) {
+    const parts = data.location.split('·').map(s => s.trim()).filter(Boolean);
+    const city = parts[0] || data.location;
+    const subAreas = parts.slice(1).join(',').split(',').map(s => s.trim()).filter(Boolean);
+    areaHtml = `<div class="area-box">
+      <div class="area-title">🗺 Main area</div>
+      <div class="area-city">${escapeHtml(city)}</div>
+      ${subAreas.length ? `<div class="area-list">${subAreas.map(a => `<span class="area-chip">${escapeHtml(a)}</span>`).join('')}</div>` : ''}
+    </div>`;
+  }
+
+  let foodHtml = '';
+  if (data.food && data.food.length) {
+    foodHtml = `<div class="food-list">${data.food.map(f => {
+      const mapsQuery = f.maps || f.name || '';
+      const mapsUrl = mapsQuery ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapsQuery)}` : null;
+      return `<div class="food-item">
+        <div>
+          <div class="food-name">${escapeHtml(f.name || '')}</div>
+          ${f.note ? `<div class="food-meta">${escapeHtml(f.note)}</div>` : ''}
+        </div>
+        ${mapsUrl ? `<a class="food-maps" href="${escapeHtml(mapsUrl)}" target="_blank" rel="noopener" title="Open in Google Maps">📍</a>` : ''}
+      </div>`;
+    }).join('')}</div>`;
+  } else {
+    foodHtml = `<div class="food-empty">Cool places to eat — to be added.</div>`;
+  }
+
+  let sleepHtml = '';
+  if (data.hotel) {
+    sleepHtml = `<div class="sleep-box">
+      <div class="sleep-title">🛏 Where we sleep</div>
+      <div class="sleep-name">${escapeHtml(data.hotel)}${data.hotelLink ? ` · <a href="${escapeHtml(data.hotelLink)}" target="_blank" rel="noopener">site</a>` : ''}</div>
+      ${data.hotelNote ? `<div class="sleep-note">${escapeHtml(data.hotelNote)}</div>` : ''}
+    </div>`;
+  } else {
+    sleepHtml = `<div class="sleep-box tbd">
+      <div class="sleep-title">🛏 Where we sleep</div>
+      <div class="sleep-name">TBD — accommodation to be decided</div>
+      ${data.hotelNote ? `<div class="sleep-note">${escapeHtml(data.hotelNote)}</div>` : ''}
+    </div>`;
+  }
+
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-header">
+      <button class="close" onclick="closeModal()">×</button>
+      <div class="day-kanji jp">${escapeHtml(data.dayLabel.split('—')[0] || '')}</div>
+      <h2>${escapeHtml(data.dayLabel)}</h2>
+      <div class="modal-date">${formatDate(data.date)}</div>
+      <div class="modal-loc">📍 ${escapeHtml(data.location)}</div>
+    </div>
+    <div class="modal-body">
+      ${flightHtml}
+      <div class="modal-section">
+        <div class="modal-section-title">🗺 Main Area</div>
+        ${areaHtml}
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">⏰ Day Plan</div>
+        ${scheduleHtml}
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">🏯 Accommodation</div>
+        ${sleepHtml}
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">🍴 Food</div>
+        ${foodHtml}
+      </div>
+    </div>
+  `;
+}
+
+function scrollTo2(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
+
+/* ============================================================================
+   ROAD TRIP — full-trip visual roadmap
+   ============================================================================ */
+const ROAD_TRIP = [
+  {type: 'stop', endpoint: true, icon: '✈️', name: 'Tel Aviv', dates: 'Fri 30 Oct', nights: null, hotel: null, note: 'Departure · Ben Gurion T3'},
+  {type: 'move', mode: 'Etihad EY594 → EY800 · TLV → AUH → NRT (~18h door-to-door)'},
+  {type: 'stop', icon: '🗼', name: 'Tokyo', dates: '31 Oct – 5 Nov', nights: 6, hotel: null, note: 'Arrival · teamLab, Harajuku, Shibuya, Mario Kart, Tsukiji, Asakusa + Nikko day trip'},
+  {type: 'move', mode: 'Odakyu Romancecar · Shinjuku → Hakone-Yumoto (~85 min)'},
+  {type: 'stop', icon: '♨️', name: 'Hakone', dates: '6 Nov', nights: 1, hotel: null, note: 'Hakone Loop + ryokan night with private onsen & kaiseki dinner'},
+  {type: 'move', mode: 'Train · Hakone → Nagoya → Takayama (~4h)'},
+  {type: 'stop', icon: '🏔', name: 'Takayama', dates: '7 – 9 Nov', nights: 3, hotel: null, note: 'Edo-era old town, morning market, Hida beef, Shirakawa-go, Satoyama cycling'},
+  {type: 'move', mode: 'JR Limited Express Hida → Shinkansen · Takayama → Kyoto (~4h)'},
+  {type: 'stop', icon: '⛩', name: 'Kyoto', dates: '10 – 13 Nov', nights: 4, hotel: null, note: 'Momiji season · Arashiyama, Fushimi Inari, temples'},
+  {type: 'move', mode: 'Sanyo Shinkansen · Kyoto → Hiroshima (~1h40)'},
+  {type: 'stop', icon: '🕊', name: 'Hiroshima + Miyajima', dates: '14 – 15 Nov', nights: 2, hotel: null, note: 'Peace Memorial Park, floating torii, Mount Misen, island walk'},
+  {type: 'move', mode: 'JR · Hiroshima → Onomichi (~1h20)'},
+  {type: 'stop', icon: '🚲', name: 'Shimanami Kaido', dates: '16 – 17 Nov', nights: 2, hotel: null, note: '70km cycling across 6 islands · ocean views, bridges, island overnight'},
+  {type: 'move', mode: 'Train/bus · Imabari → Osaka (~3h)'},
+  {type: 'stop', icon: '🐙', name: 'Osaka', dates: '18 Nov', nights: 1, hotel: null, note: 'Dotonbori street food, last night in Japan'},
+  {type: 'move', mode: 'Flight · KIX → USM or KIX → BKK → USM'},
+  {type: 'stop', icon: '🏝', name: 'Koh Samui', dates: '19 – 25 Nov', nights: 6, hotel: null, note: 'Beach relaxation, island vibes, couples spa · wind down after Japan'},
+  {type: 'move', mode: 'Flight · USM → BKK (~1h)'},
+  {type: 'stop', endpoint: true, icon: '✈️', name: 'Tel Aviv', dates: 'Thu 26 Nov', nights: null, hotel: null, note: 'Flight home · BKK → TLV'}
+];
+
+function renderRoadmap(containerId) {
+  const container = document.getElementById(containerId);
+  let html = '';
+  ROAD_TRIP.forEach(item => {
+    if (item.type === 'move') {
+      html += `<div class="road-connector">
+        <div class="connector-line">↓</div>
+        <div class="connector-mode">${escapeHtml(item.mode)}</div>
+      </div>`;
+    } else {
+      const nightsLabel = item.nights ? `<span class="stop-nights">${item.nights} ${item.nights === 1 ? 'night' : 'nights'}</span>` : '';
+      const hotelLabel = item.hotel
+        ? `<div class="stop-hotel">🛏 ${escapeHtml(item.hotel)}</div>`
+        : (item.nights ? `<div class="stop-hotel tbd">🛏 Accommodation TBD</div>` : '');
+      html += `<div class="road-stop${item.endpoint ? ' endpoint' : ''}">
+        <div class="stop-icon">${item.icon}</div>
+        <div class="stop-body">
+          <div class="stop-name">${escapeHtml(item.name)} ${nightsLabel}</div>
+          <div class="stop-dates">${escapeHtml(item.dates)}</div>
+          ${item.note ? `<div class="stop-note">${escapeHtml(item.note)}</div>` : ''}
+          ${hotelLabel}
+        </div>
+      </div>`;
+    }
+  });
+  container.innerHTML = html;
+}
+
+renderRoadmap('roadmap-container');
+
+/* ============================================================================
+   NOTES FOR CLAUDE — inbox of ideas to insert into specific days
+   ============================================================================ */
+const NOTES_KEY = 'claude_notes';
+
+function getNotes() {
+  const raw = localStorage.getItem(NOTES_KEY);
+  return raw ? JSON.parse(raw) : [];
+}
+function setNotes(notes) {
+  localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
+}
+
+function populateNoteDates() {
+  const select = document.getElementById('note-date');
+  const [sy, sm, sd] = TRIP_START.split('-').map(Number);
+  const [ey, em, ed] = TRIP_END.split('-').map(Number);
+  const start = new Date(sy, sm - 1, sd);
+  const end = new Date(ey, em - 1, ed);
+  let dayNum = 1;
+  let opts = '';
+  for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+    const y = d.getFullYear();
+    const m = d.getMonth() + 1;
+    const dd = d.getDate();
+    const key = dateKey(y, m, dd);
+    const label = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+    opts += `<option value="${key}">Day ${dayNum} · ${label}</option>`;
+    dayNum++;
+  }
+  select.innerHTML = opts;
+}
+
+function saveNote() {
+  const date = document.getElementById('note-date').value;
+  const title = document.getElementById('note-title').value.trim();
+  const description = document.getElementById('note-desc').value.trim();
+  if (!title) { alert('Please add at least a title for the note.'); return; }
+  const notes = getNotes();
+  notes.push({ date, title, description, created: Date.now() });
+  setNotes(notes);
+  document.getElementById('note-title').value = '';
+  document.getElementById('note-desc').value = '';
+  renderNotes();
+}
+
+function deleteNote(idx) {
+  const notes = getNotes();
+  notes.splice(idx, 1);
+  setNotes(notes);
+  renderNotes();
+}
+
+function renderNotes() {
+  const notes = getNotes()
+    .map((n, _idx) => ({...n, _idx}))
+    .sort((a, b) => (a.date || '').localeCompare(b.date || '') || a._idx - b._idx);
+  const list = document.getElementById('notes-list');
+  const count = document.getElementById('notes-count');
+  count.textContent = notes.length ? `· ${notes.length}` : '';
+  if (notes.length === 0) {
+    list.innerHTML = '<div class="notes-empty">No pending notes — drop one above ↑</div>';
+    return;
+  }
+  list.innerHTML = notes.map(n => {
+    const [y, m, d] = n.date.split('-').map(Number);
+    const label = new Date(y, m - 1, d).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+    return `<div class="note-card">
+      <div class="note-date">${escapeHtml(label)}</div>
+      <div class="note-body">
+        <h5>${escapeHtml(n.title)}</h5>
+        ${n.description ? `<p>${escapeHtml(n.description)}</p>` : ''}
+      </div>
+      <button class="note-delete" onclick="deleteNote(${n._idx})" title="Delete">✕</button>
+    </div>`;
+  }).join('');
+}
+
+populateNoteDates();
+renderNotes();
+
+/* ============================================================================
+   BUDGET — exchange to NIS
+   ============================================================================ */
+const FX_RATES = {
+  ILS: 1,
+  USD: 3.65,
+  EUR: 3.95,
+  JPY: 0.024,
+  AED: 0.99
+};
+const CCY_SYMBOL = { ILS: '₪', USD: '$', EUR: '€', JPY: '¥', AED: 'د.إ' };
+
+const LOCKED_EXPENSES = [
+  { category: 'Flights', label: 'Etihad Economy · TLV ↔ NRT (round-trip, 2 pax)', amount: 1567, currency: 'USD', locked: true }
+];
+const BUDGET_KEY = 'budget_expenses';
+
+function getExpenses() {
+  const raw = localStorage.getItem(BUDGET_KEY);
+  return raw ? JSON.parse(raw) : [];
+}
+function setExpenses(list) {
+  localStorage.setItem(BUDGET_KEY, JSON.stringify(list));
+}
+
+function fmtNIS(n) {
+  return '₪' + Math.round(n).toLocaleString('en-US');
+}
+function fmtLocal(amount, ccy) {
+  const sym = CCY_SYMBOL[ccy] || '';
+  const fixed = ccy === 'JPY' ? 0 : 2;
+  return sym + Number(amount).toLocaleString('en-US', { minimumFractionDigits: fixed, maximumFractionDigits: fixed });
+}
+
+function saveExpense() {
+  const category = document.getElementById('b-category').value;
+  const currency = document.getElementById('b-currency').value;
+  const label = document.getElementById('b-label').value.trim();
+  const amount = parseFloat(document.getElementById('b-amount').value);
+  if (!label) { alert('Please add a label for the expense.'); return; }
+  if (!amount || amount <= 0) { alert('Please enter a valid amount.'); return; }
+  const expenses = getExpenses();
+  expenses.push({ category, currency, label, amount });
+  setExpenses(expenses);
+  document.getElementById('b-label').value = '';
+  document.getElementById('b-amount').value = '';
+  renderBudget();
+}
+
+function deleteExpense(idx) {
+  const expenses = getExpenses();
+  expenses.splice(idx, 1);
+  setExpenses(expenses);
+  renderBudget();
+}
+
+function renderBudget() {
+  const userExpenses = getExpenses().map((e, i) => ({...e, _idx: i, _user: true}));
+  const all = [...LOCKED_EXPENSES.map(e => ({...e, _user: false})), ...userExpenses];
+
+  let totalNIS = 0;
+  const byCcy = {};
+  all.forEach(e => {
+    const rate = FX_RATES[e.currency] || 1;
+    totalNIS += e.amount * rate;
+    byCcy[e.currency] = (byCcy[e.currency] || 0) + e.amount;
+  });
+
+  document.getElementById('budget-total-nis').textContent = fmtNIS(totalNIS);
+  document.getElementById('budget-total-count').textContent = `${all.length} ${all.length === 1 ? 'line' : 'lines'}`;
+  document.getElementById('budget-totals-by-ccy').innerHTML = Object.keys(byCcy).length
+    ? Object.entries(byCcy).map(([c, a]) => `<div>${fmtLocal(a, c)} <span style="color:#bbb;font-size:0.78rem;">${c}</span></div>`).join('')
+    : '—';
+
+  const list = document.getElementById('budget-list');
+  list.innerHTML = all.map(e => {
+    const rate = FX_RATES[e.currency] || 1;
+    const nis = e.amount * rate;
+    return `<div class="budget-row${e._user ? '' : ' locked'}">
+      <div class="b-cat">${escapeHtml(e.category)}</div>
+      <div class="b-label">${escapeHtml(e.label)}</div>
+      <div class="b-local">${fmtLocal(e.amount, e.currency)}</div>
+      <div class="b-nis">${fmtNIS(nis)}</div>
+      ${e._user
+        ? `<button class="b-delete" onclick="deleteExpense(${e._idx})" title="Delete">✕</button>`
+        : `<div title="Locked entry">🔒</div>`}
+    </div>`;
+  }).join('');
+
+  document.getElementById('budget-rates-display').textContent =
+    `1 USD = ${FX_RATES.USD} ₪ · 1 JPY = ${FX_RATES.JPY} ₪ · 1 EUR = ${FX_RATES.EUR} ₪ · 1 AED = ${FX_RATES.AED} ₪`;
+}
+
+renderBudget();
+</script>
+
+</body>
+</html>
