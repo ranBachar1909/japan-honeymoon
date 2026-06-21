@@ -254,7 +254,7 @@
     background: white;
     border-left: 3px solid var(--maple);
     border-radius: 2px;
-    align-items: center;
+    align-items: start;
   }
   .sched-item.user-added { border-left-color: var(--moss); background: #f4f7f0; }
   .sched-step {
@@ -266,6 +266,10 @@
   .sched-step::before { content: counter(step); }
   .sched-item.user-added .sched-step { color: var(--moss); }
   .sched-content h4 { font-size: 0.98rem; font-weight: 400; }
+  .sched-content .sched-time { font-size: 0.72rem; letter-spacing: 0.06em; color: var(--maple); font-weight: 500; text-transform: uppercase; margin-bottom: 0.15rem; }
+  .sched-content .sched-desc { font-size: 0.82rem; color: #666; line-height: 1.5; margin-top: 0.3rem; }
+  .sched-content .sched-link { font-size: 0.75rem; color: var(--gold); display: inline-block; margin-top: 0.35rem; border-bottom: 1px solid transparent; }
+  .sched-content .sched-link:hover { border-bottom-color: var(--gold); }
   .sched-maps {
     color: var(--muted); font-size: 1rem;
     border-bottom: none; padding: 0.2rem 0.45rem;
@@ -941,13 +945,18 @@ const TRIP_DATA = {
   },
   "2026-10-31": {
     "date": "2026-10-31",
-    "dayLabel": "Day 2 — Welcome to Tokyo (Halloween)",
-    "location": "Tokyo · Otemachi",
+    "dayLabel": "Day 2 — Arrival + Akihabara Night (Halloween)",
+    "location": "Tokyo · Akihabara, Shinjuku",
     "hotel": "remm Akihabara",
     "hotelLink": "https://www.hankyu-hotel.com/hotel/remm/remmakihabara/en/",
     "hotelNote": "🏨 CHECK-IN today — home base for all 6 Tokyo nights. 1-6-5 Kanda Sakumacho, Chiyoda-ku (Akihabara Station, Shōwa-dōri exit, ~4 min walk). Check-in from 14:00. Economy Double, non-smoking. Booking conf #5666089225 · PIN 4711. ¥143,450 total for 6 nights / 2 adults. Free cancellation until Oct 28, 2026. ☎ +81 3 3254 0606.",
     "schedule": [
-      {"time": "15:00–17:00", "title": "Imperial Palace East Gardens — jet-lag walk", "description": "Free, open until 17:00 in late Oct. Daylight is critical for resetting the circadian rhythm. Enter via Otemon Gate, ~45 min loop past the Edo Castle keep ruins. Early autumn maples.", "link": "https://sankan.kunaicho.go.jp/english/guide/higashigyoen.html"}
+      {"time": "11:40–14:45", "title": "Land at Narita + transfer to Akihabara", "description": "Touch down 11:40 at Narita T1 (Etihad EY800). Clear immigration with your Visit Japan Web QR, collect bags, customs. Activate the Japan eSIM, withdraw ¥ at a 7-Bank ATM, top up Suica/Pasmo IC cards. Fastest routes to Akihabara: Keisei Skyliner → Ueno (~45 min) + 1 stop on the Yamanote line, or the Narita Express (N'EX) → Tokyo Station + 5 min to Akihabara. Allow ~1h45 door-to-door with luggage.", "link": "https://www.narita-airport.jp/en"},
+      {"time": "14:45–15:15", "title": "Check in at remm Akihabara", "description": "Reception from 14:00. Room at 1-6-5 Kanda Sakumacho, ~4 min from Akihabara Station (Shōwa-dōri exit). Drop bags, freshen up. Tonight's goal: stay awake until ~23:00 to reset your body clock and beat the jet lag — keep moving and get daylight/neon exposure.", "link": "https://www.hankyu-hotel.com/hotel/remm/remmakihabara/en/"},
+      {"time": "15:15–17:30", "title": "Akihabara mega-shopping spree", "description": "Ease into Tokyo right outside your hotel: (1) Don Quijote — 8-floor mega-store, snacks/cosmetics/electronics/KitKat flavors, AKB48 idol theatre on top. (2) Yodobashi Camera — Japan's largest electronics store, 9 floors. (3) Mandarake Complex — 8 floors of vintage manga, anime cels, figurines. (4) Akihabara Gachapon Kaikan — 500+ capsule machines (perfect souvenirs). (5) GiGO Purikura photo booth — couple photos, ~¥500. Bring passports for tax-free over ¥5,500.", "link": "https://www.donki.com/en/"},
+      {"time": "18:00–19:30", "title": "Tocho deck + TOKYO Night & Light show (Shinjuku)", "description": "Ride to Shinjuku (~17 min, Chūō/Sōbu line). FREE 202m night view from the Tokyo Metropolitan Government Observation Deck. Then watch the 'TOKYO Night & Light' Guinness-record projection mapping on the building exterior — runs every 30 min after dark, viewed from the plaza below.", "link": "https://www.gotokyo.org/en/spot/24/index.html"},
+      {"time": "19:30–21:00", "title": "Samurai Restaurant — neon cabaret show", "description": "90-min Robot Restaurant successor: neon spectacle with samurai battles, taiko drummers, giant robots, dragons, J-pop dancers and lasers. ¥9,000–11,000pp. Book ahead via Klook, arrive 15 min early. ⚠️ If you're wiped from the flight, this is the easiest thing to drop tonight.", "link": "https://samurai-restaurant.tokyo/"},
+      {"time": "21:00–22:45", "title": "Golden Gai bar-hopping", "description": "Labyrinth of ~200 tiny themed bars, each seating 5–8. Hop 2–3: Albatross G (gothic-glam, English menu, ¥500 cover), Open Book (lemon-sour specialist), Death Match in Hell (heavy metal). Always ask the cover charge before sitting (¥500–1,500). Then back to Akihabara (~17 min) and collapse — you've earned it. ⚠️ Skip if too tired.", "link": "https://www.albatross-5.com/golden_gai/"}
     ]
   },
   "2026-11-01": {
@@ -979,16 +988,15 @@ const TRIP_DATA = {
   },
   "2026-11-03": {
     "date": "2026-11-03",
-    "dayLabel": "Day 5 — Mario Kart, Akihabara & Shinjuku Neon",
-    "location": "Tokyo · Akihabara, Shinjuku",
+    "dayLabel": "Day 5 — Mario Kart + Shimokitazawa + Daikanyama",
+    "location": "Tokyo · Akihabara, Shimokitazawa, Daikanyama",
     "hotel": "remm Akihabara",
     "hotelNote": "Night 4 of 6 · Your hotel is right here in Akihabara today — drop bags between activities!",
     "schedule": [
       {"time": "10:00–12:15", "title": "Street Kart Akihabara — real-life Mario Kart", "description": "Drive go-karts on public Tokyo streets dressed as Mario, Luigi, Princess Peach, Yoshi (costumes free). ~2h including briefing, costume selection, guided convoy through Akihabara → Tokyo Tower → Rainbow Bridge views. GoPro rental (~¥1,500) — worth it for honeymoon footage. ¥10,000–13,000pp. Book 1–2 weeks ahead (Nov 3 = Culture Day, sells out). Speeds capped ~60 km/h — stay in convoy, follow hand signals. No driving in rain. ⚠️ BRING: passports + International Driving Permits (Geneva 1949 from MEMSI Israel — Israeli license alone is NOT accepted; without IDP = passenger only or refused entirely). Wear closed-toe shoes, long sleeves + light gloves (open karts get cold at 12–15°C).", "link": "https://kart.st/"},
-      {"time": "14:00–17:00", "title": "Akihabara mega-shopping spree", "description": "Walk Chuo-dori through Akihabara's full sensory overload: (1) Don Quijote — 8-floor mega-store, snacks/cosmetics/electronics/KitKat flavors crammed floor-to-ceiling, AKB48 idol theatre on top. (2) Yodobashi Camera — Japan's largest electronics store, 9 floors. (3) Mandarake Complex — 8 floors of vintage manga, anime cels, figurines. (4) Super Potato Retro-kan — retro video-game museum/shop. (5) Akihabara Gachapon Kaikan — 500+ capsule machines (¥300–500 each, perfect souvenirs). (6) GiGO Arcade Purikura photo booth — eye-enlarging couple photos, ~¥500/session. Bring passports for tax-free purchases over ¥5,500.", "link": "https://www.donki.com/en/"},
-      {"time": "17:00–19:00", "title": "Tocho sunset + TOKYO Night & Light show (Shinjuku)", "description": "FREE 202m panoramic view of Tokyo from the Tokyo Metropolitan Government Observation Deck — Mt Fuji visible on clear days. Time it for sunset ~16:45 + city lights. Bonus: 'TOKYO Night & Light' Guinness-record projection mapping on the building exterior runs every 30 min after dark — watch from the plaza below.", "link": "https://www.gotokyo.org/en/spot/24/index.html"},
-      {"time": "19:30–21:15", "title": "Samurai Restaurant — neon cabaret show", "description": "90-min Robot Restaurant successor: over-the-top neon spectacle with samurai battles, taiko drummers, giant robots, dragons, J-pop dancers and lasers. ¥9,000–11,000pp. Pure Tokyo kitsch — book ahead via Klook, arrive 15 min early.", "link": "https://samurai-restaurant.tokyo/"},
-      {"time": "21:15–23:00", "title": "Golden Gai bar-hopping", "description": "Labyrinth of ~200 themed bars, each fitting 5–8 people. Hop 2–3 spots: Albatross G (gothic-glam chandelier interior, English menu, ¥500 cover), Open Book (lemon-sour specialist, literary vibe), Death Match in Hell (heavy metal). Always ask cover charge before sitting (¥500–1,500). Ignore Kabukicho touts politely.", "link": "https://www.albatross-5.com/golden_gai/"}
+      {"time": "12:15–13:15", "title": "Lunch in Akihabara", "description": "Refuel after the karts — conveyor-belt sushi, a ramen counter, or a katsu set near the hotel. Then head west toward Shibuya for the afternoon.", "link": null},
+      {"time": "13:45–15:45", "title": "Shimokitazawa — vintage & bohemian backstreets", "description": "From Akihabara, ride to Shibuya then the Keiō Inokashira line (~30 min total). 'Shimokita' is Tokyo's thrift and indie capital — racks of vintage Levi's and band tees (New York Joe Exchange, Flamingo, Stick Out), tiny record stores, third-wave coffee, curry joints and live-music basements. No big sights — just wander the car-free lanes and browse.", "link": "https://www.gotokyo.org/en/destinations/western-tokyo/shimokitazawa/index.html"},
+      {"time": "16:15–18:15", "title": "Daikanyama — Tsutaya T-Site + boutiques at sunset", "description": "One stop from Shibuya on the Tōyoko line. The 'Brooklyn of Tokyo': leafy, low-rise, stylish. Browse Daikanyama T-Site (Tsutaya Books — gorgeous architecture, design + photography books, the Anjin lounge), Log Road, and the Hillside Terrace boutiques. Coffee or an early dinner here, then back to the hotel.", "link": "https://store.tsite.jp/daikanyama/english/"}
     ]
   },
   "2026-11-04": {
@@ -1157,7 +1165,10 @@ function renderModal(data) {
       <div class="sched-item">
         <div class="sched-step"></div>
         <div class="sched-content">
+          ${item.time ? `<div class="sched-time">${escapeHtml(item.time)}</div>` : ''}
           <h4>${escapeHtml(item.title || '')}</h4>
+          ${item.description ? `<p class="sched-desc">${escapeHtml(item.description)}</p>` : ''}
+          ${item.link ? `<a class="sched-link" href="${escapeHtml(item.link)}" target="_blank" rel="noopener">More info ↗</a>` : ''}
         </div>
         <div class="sched-actions">
           ${mapsUrl ? `<a class="sched-maps" href="${escapeHtml(mapsUrl)}" target="_blank" rel="noopener" title="Open in Google Maps">📍</a>` : ''}
