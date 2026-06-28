@@ -1089,7 +1089,7 @@ const TRIP_DATA = {
     "dayLabel": "Day 13 — Shirakawa-gō → Kanazawa → Kyoto",
     "location": "Takayama → Shirakawa-gō → Kanazawa → Kyoto",
     "hotel": "Résol Kyoto Shijo Muromachi",
-    "hotelNote": "🏨 Check in Kyoto tonight · Résol Kyoto Shijo Muromachi · night 1 of 3 (Nov 11→14) · Free cancellation until Nov 9, payment Nov 7. (Return the rental car in Kanazawa first.)",
+    "hotelNote": "🏨 Check in Kyoto tonight (from 15:00) · Hotel Résol Kyoto Shijo Muromachi, Muromachidori Takatsujiagaru Sannoucho 554, Shimogyo-ku · night 1 of 3 (Nov 11→14). Standard Hollywood Twin (tatami), non-smoking, no meals. Conf #6049260082 · PIN 2061. ¥82,579 total. Free cancellation until Nov 10 (1 day before). ☎ +81 75 365 9269. (Return the rental car in Kanazawa first.)",
     "schedule": [
       {"time": "08:30–11:00", "title": "Shirakawa-gō gasshō village", "description": "🚗 ~50 min from Takayama · 🏘 UNESCO thatched-roof village + Shiroyama viewpoint · 🕐 ~2h.", "maps": "Shirakawa-go"},
       {"time": "11:15–15:00", "title": "Kanazawa — Kenroku-en + Higashi Chaya", "description": "🚗 ~1h15 to Kanazawa · 🌳 Kenroku-en (one of Japan's 3 great gardens) + Higashi Chaya geisha district + lunch.", "maps": "Kenrokuen Garden Kanazawa"},
@@ -1351,13 +1351,13 @@ const ROAD_TRIP = [
   {type: 'move', mode: 'Car · Kawaguchiko → Matsumoto (~1h45) → Takayama (~2h)'},
   {type: 'stop', icon: '🏔', name: 'Takayama', dates: '9 – 10 Nov', nights: 2, hotel: null, note: 'Matsumoto Castle en route · Sanmachi old town, morning market, Hida beef'},
   {type: 'move', mode: 'Car · Takayama → Shirakawa-gō → Kanazawa (return car) → train Kyoto (~2h)'},
-  {type: 'stop', icon: '⛩', name: 'Kyoto', dates: '11 – 13 Nov', nights: 3, hotel: 'Résol Kyoto Shijo Muromachi (free cancel to 9 Nov · pay 7 Nov)', note: 'Shirakawa-gō + Kanazawa (Kenroku-en) en route · Momiji · Arashiyama, Fushimi Inari, Nara'},
+  {type: 'stop', icon: '⛩', name: 'Kyoto', dates: '11 – 13 Nov', nights: 3, hotel: 'Hotel Résol Kyoto Shijo Muromachi · Shijo (conf 6049260082)', note: 'Shirakawa-gō + Kanazawa (Kenroku-en) en route · Momiji · Arashiyama, Fushimi Inari, Nara'},
   {type: 'move', mode: 'Sanyo Shinkansen · Kyoto → Hiroshima (~1h40)'},
   {type: 'stop', icon: '🕊', name: 'Hiroshima + Miyajima', dates: '14 – 15 Nov', nights: 2, hotel: null, note: 'Peace Memorial Park, floating torii, Mount Misen, island walk'},
   {type: 'move', mode: 'JR · Hiroshima → Onomichi (~1h20)'},
   {type: 'stop', icon: '🚲', name: 'Shimanami Kaido', dates: '16 – 17 Nov', nights: 2, hotel: null, note: '70km cycling across 6 islands · ocean views, bridges, island overnight'},
   {type: 'move', mode: 'Train/bus · Imabari → Osaka (~3h)'},
-  {type: 'stop', icon: '🐙', name: 'Osaka', dates: '18 Nov', nights: 1, hotel: 'Cross Hotel Osaka (free cancel to 17 Nov · pay on site)', note: 'Dotonbori street food, last night in Japan'},
+  {type: 'stop', icon: '🐙', name: 'Osaka', dates: '18 Nov', nights: 1, hotel: 'Cross Hotel Osaka · Shinsaibashi (conf 6564540515 · pay on site)', note: 'Dotonbori street food, last night in Japan'},
   {type: 'move', mode: 'Flight · KIX → USM or KIX → BKK → USM'},
   {type: 'stop', icon: '🏝', name: 'Koh Samui', dates: '19 – 25 Nov', nights: 6, hotel: null, note: 'Beach relaxation, island vibes, couples spa · wind down after Japan'},
   {type: 'move', mode: 'Flight · USM → BKK (~1h)'},
@@ -1490,7 +1490,9 @@ const CCY_SYMBOL = { ILS: '₪', USD: '$', EUR: '€', JPY: '¥', AED: 'د.إ' }
 const LOCKED_EXPENSES = [
   { category: 'Flights', label: 'Etihad Economy · TLV ↔ NRT (round-trip, 2 pax)', amount: 1567, currency: 'USD', locked: true },
   { category: 'Accommodation', label: 'remm Akihabara · 6 nights (Oct 31–Nov 6, 2 pax) · ¥143,450 · Conf 5666089225', amount: 2633, currency: 'ILS', locked: true },
-  { category: 'Accommodation', label: 'Hakone Hibarino Hot Spring Hotel · 1 night (Nov 6–7, 2 pax) · ¥77,701 · Conf 6272830839', amount: 1426, currency: 'ILS', locked: true }
+  { category: 'Accommodation', label: 'Hakone Hibarino Hot Spring Hotel · 1 night (Nov 6–7, 2 pax) · ¥77,701 · Conf 6272830839', amount: 1426, currency: 'ILS', locked: true },
+  { category: 'Accommodation', label: 'Hotel Résol Kyoto Shijo Muromachi · 3 nights (Nov 11–14, 2 pax) · ¥82,579 · Conf 6049260082', amount: 1533, currency: 'ILS', locked: true },
+  { category: 'Accommodation', label: 'Cross Hotel Osaka · 1 night (Nov 18–19, 2 pax) · ¥17,193 · Conf 6564540515', amount: 319, currency: 'ILS', locked: true }
 ];
 const BUDGET_KEY = 'budget_expenses';
 
