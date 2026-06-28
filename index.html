@@ -949,7 +949,7 @@ const TRIP_DATA = {
     "location": "Tokyo · Akihabara, Shinjuku",
     "hotel": "remm Akihabara",
     "hotelLink": "https://www.hankyu-hotel.com/hotel/remm/remmakihabara/en/",
-    "hotelNote": "🏨 CHECK-IN today — home base for all 6 Tokyo nights. 1-6-5 Kanda Sakumacho, Chiyoda-ku (Akihabara Station, Shōwa-dōri exit, ~4 min walk). Check-in from 14:00. Economy Double, non-smoking. Booking conf #5666089225 · PIN 4711. ¥143,450 total for 6 nights / 2 adults. Free cancellation until Oct 28, 2026. ☎ +81 3 3254 0606.",
+    "hotelNote": "🏨 CHECK-IN today — home base for all 6 Tokyo nights. 1-6-5 Kanda Sakumacho, Chiyoda-ku (Akihabara Station, Shōwa-dōri exit, ~4 min walk). Check-in from 14:00. Economy Double, non-smoking. Booking conf #5666089225 · PIN 4711. ¥143,450 total for 6 nights / 2 adults. Free cancellation until Oct 28 · payment Oct 26. ☎ +81 3 3254 0606.",
     "schedule": [
       {"time": "11:40–14:45", "title": "Land at Narita + transfer to Akihabara", "description": "🚆 Skyliner → Ueno (~45 min) + 1 stop Yamanote, OR N'EX → Tokyo Stn + 5 min. ~1h45 with luggage · 📌 Visit Japan Web QR ready at immigration · 💡 On arrival: activate eSIM, get ¥ at a 7-Bank ATM, load Suica/Pasmo.", "link": "https://www.narita-airport.jp/en"},
       {"time": "14:45–15:15", "title": "Check in at remm Akihabara", "description": "🏨 1-6-5 Kanda Sakumacho, ~4 min from station (Shōwa-dōri exit) · 🕐 Reception from 14:00 · 💡 Drop bags; stay awake till ~23:00 to beat jet lag.", "link": "https://www.hankyu-hotel.com/hotel/remm/remmakihabara/en/"},
@@ -1088,8 +1088,8 @@ const TRIP_DATA = {
     "date": "2026-11-11",
     "dayLabel": "Day 13 — Shirakawa-gō → Kanazawa → Kyoto",
     "location": "Takayama → Shirakawa-gō → Kanazawa → Kyoto",
-    "hotel": "Kyoto — 1 of 3 (to book)",
-    "hotelNote": "🚗 Return the rental car in Kanazawa (~17:00), then train to Kyoto. Kyoto hotel — to book (3 nights).",
+    "hotel": "Résol Kyoto Shijo Muromachi",
+    "hotelNote": "🏨 Check in Kyoto tonight · Résol Kyoto Shijo Muromachi · night 1 of 3 (Nov 11→14) · Free cancellation until Nov 9, payment Nov 7. (Return the rental car in Kanazawa first.)",
     "schedule": [
       {"time": "08:30–11:00", "title": "Shirakawa-gō gasshō village", "description": "🚗 ~50 min from Takayama · 🏘 UNESCO thatched-roof village + Shiroyama viewpoint · 🕐 ~2h.", "maps": "Shirakawa-go"},
       {"time": "11:15–15:00", "title": "Kanazawa — Kenroku-en + Higashi Chaya", "description": "🚗 ~1h15 to Kanazawa · 🌳 Kenroku-en (one of Japan's 3 great gardens) + Higashi Chaya geisha district + lunch.", "maps": "Kenrokuen Garden Kanazawa"},
@@ -1100,8 +1100,16 @@ const TRIP_DATA = {
     "date": "2026-11-12",
     "dayLabel": "Day 14 — Kyoto",
     "location": "Kyoto · 3 nights (Nara possible)",
-    "hotel": "Kyoto — 2 of 3 (to book)",
-    "hotelNote": "Kyoto base · 3 nights (Nov 11→14). Nara day trip possible. Detailed Kyoto plan — to build.",
+    "hotel": "Résol Kyoto Shijo Muromachi",
+    "hotelNote": "Night 2 of 3 · Résol Kyoto Shijo Muromachi. Nara day trip possible. Detailed Kyoto plan — to build.",
+    "schedule": []
+  },
+  "2026-11-13": {
+    "date": "2026-11-13",
+    "dayLabel": "Day 15 — Kyoto",
+    "location": "Kyoto · last day",
+    "hotel": "Résol Kyoto Shijo Muromachi",
+    "hotelNote": "Night 3 of 3 (last Kyoto night) · Résol Kyoto Shijo Muromachi · Check out tomorrow → Hiroshima.",
     "schedule": []
   }
 };
@@ -1343,13 +1351,13 @@ const ROAD_TRIP = [
   {type: 'move', mode: 'Car · Kawaguchiko → Matsumoto (~1h45) → Takayama (~2h)'},
   {type: 'stop', icon: '🏔', name: 'Takayama', dates: '9 – 10 Nov', nights: 2, hotel: null, note: 'Matsumoto Castle en route · Sanmachi old town, morning market, Hida beef'},
   {type: 'move', mode: 'Car · Takayama → Shirakawa-gō → Kanazawa (return car) → train Kyoto (~2h)'},
-  {type: 'stop', icon: '⛩', name: 'Kyoto', dates: '11 – 13 Nov', nights: 3, hotel: null, note: 'Shirakawa-gō + Kanazawa (Kenroku-en) en route · Momiji · Arashiyama, Fushimi Inari, Nara'},
+  {type: 'stop', icon: '⛩', name: 'Kyoto', dates: '11 – 13 Nov', nights: 3, hotel: 'Résol Kyoto Shijo Muromachi (free cancel to 9 Nov · pay 7 Nov)', note: 'Shirakawa-gō + Kanazawa (Kenroku-en) en route · Momiji · Arashiyama, Fushimi Inari, Nara'},
   {type: 'move', mode: 'Sanyo Shinkansen · Kyoto → Hiroshima (~1h40)'},
   {type: 'stop', icon: '🕊', name: 'Hiroshima + Miyajima', dates: '14 – 15 Nov', nights: 2, hotel: null, note: 'Peace Memorial Park, floating torii, Mount Misen, island walk'},
   {type: 'move', mode: 'JR · Hiroshima → Onomichi (~1h20)'},
   {type: 'stop', icon: '🚲', name: 'Shimanami Kaido', dates: '16 – 17 Nov', nights: 2, hotel: null, note: '70km cycling across 6 islands · ocean views, bridges, island overnight'},
   {type: 'move', mode: 'Train/bus · Imabari → Osaka (~3h)'},
-  {type: 'stop', icon: '🐙', name: 'Osaka', dates: '18 Nov', nights: 1, hotel: null, note: 'Dotonbori street food, last night in Japan'},
+  {type: 'stop', icon: '🐙', name: 'Osaka', dates: '18 Nov', nights: 1, hotel: 'Cross Hotel Osaka (free cancel to 17 Nov · pay on site)', note: 'Dotonbori street food, last night in Japan'},
   {type: 'move', mode: 'Flight · KIX → USM or KIX → BKK → USM'},
   {type: 'stop', icon: '🏝', name: 'Koh Samui', dates: '19 – 25 Nov', nights: 6, hotel: null, note: 'Beach relaxation, island vibes, couples spa · wind down after Japan'},
   {type: 'move', mode: 'Flight · USM → BKK (~1h)'},
