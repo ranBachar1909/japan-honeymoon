@@ -1112,6 +1112,31 @@ const TRIP_DATA = {
     "hotelNote": "Night 3 of 3 (last Kyoto night) · Résol Kyoto Shijo Muromachi · Check out tomorrow → Hiroshima.",
     "schedule": []
   },
+  "2026-11-14": {
+    "date": "2026-11-14",
+    "dayLabel": "Day 16 — Kyoto → Hiroshima",
+    "location": "Hiroshima · Peace Memorial Park",
+    "hotel": "Grandvrio Hotel Miyajima Wakura (Route Inn)",
+    "hotelNote": "🏨 CHECK-IN today (from 15:00) · Grandvrio Hotel Miyajima Wakura — Route Inn, Miyajimaguchi 1-1-37 (mainland, by the Miyajima ferry pier) · 2 nights (Nov 14→16), base for both Hiroshima + Miyajima. Check out Nov 16 by 10:00.",
+    "schedule": [
+      {"time": "morning", "title": "Train Kyoto → Hiroshima", "description": "🚆 Sanyo Shinkansen (Nozomi) ~1h40 · 🧳 Then JR to Miyajimaguchi to drop bags.", "maps": "Hiroshima Station"},
+      {"time": "13:00–16:00", "title": "Peace Memorial Park + Museum", "description": "🕊 A-Bomb Dome, Peace Memorial Museum, Children's Peace Monument · 🎟 Museum ¥200, allow ~2h · 💡 Moving — give it time.", "maps": "Hiroshima Peace Memorial Park"},
+      {"time": "evening", "title": "Hiroshima okonomiyaki dinner", "description": "🍳 Hiroshima-style okonomiyaki (layered, with noodles) at Okonomi-mura or a local counter.", "maps": "Okonomimura Hiroshima"}
+    ]
+  },
+  "2026-11-15": {
+    "date": "2026-11-15",
+    "dayLabel": "Day 17 — Miyajima Island",
+    "location": "Miyajima · Itsukushima, Mt Misen",
+    "hotel": "Grandvrio Hotel Miyajima Wakura (Route Inn)",
+    "hotelNote": "Night 2 of 2 · Grandvrio Hotel Miyajima Wakura (Miyajimaguchi). Check out tomorrow by 10:00 → Onomichi / Shimanami.",
+    "schedule": [
+      {"time": "09:00–09:15", "title": "Ferry to Miyajima", "description": "⛴ JR ferry from Miyajimaguchi (~10 min, right by the hotel) · 🎟 ~¥200 (or JR Pass).", "maps": "Miyajimaguchi Ferry Terminal"},
+      {"time": "09:30–11:00", "title": "Itsukushima Shrine + floating torii", "description": "⛩ The torii standing in the sea · 🌊 Check tide times — high tide floats it, low tide you can walk to it · 🦌 Free-roaming deer.", "maps": "Itsukushima Shrine"},
+      {"time": "11:30–14:30", "title": "Mt Misen (ropeway + summit)", "description": "🚠 Miyajima Ropeway, then ~30 min walk to the 535m summit · 🌄 Views over the Seto Inland Sea · 🍁 Autumn colors.", "maps": "Mount Misen Miyajima"},
+      {"time": "afternoon", "title": "Daishō-in temple + island snacks", "description": "🛕 Daishō-in hillside temple · 🍡 Momiji-manju (maple-leaf cakes) + grilled oysters on Omotesando street.", "maps": "Daishoin Temple Miyajima"}
+    ]
+  },
   "2026-11-18": {
     "date": "2026-11-18",
     "dayLabel": "Day 20 — Osaka (last night in Japan)",
@@ -1364,7 +1389,7 @@ const ROAD_TRIP = [
   {type: 'move', mode: 'Car · Takayama → Shirakawa-gō → Kanazawa (return car) → train Kyoto (~2h)'},
   {type: 'stop', icon: '⛩', name: 'Kyoto', dates: '11 – 13 Nov', nights: 3, hotel: 'Hotel Résol Kyoto Shijo Muromachi · Shijo (conf 6049260082)', note: 'Shirakawa-gō + Kanazawa (Kenroku-en) en route · Momiji · Arashiyama, Fushimi Inari, Nara'},
   {type: 'move', mode: 'Sanyo Shinkansen · Kyoto → Hiroshima (~1h40)'},
-  {type: 'stop', icon: '🕊', name: 'Hiroshima + Miyajima', dates: '14 – 15 Nov', nights: 2, hotel: null, note: 'Peace Memorial Park, floating torii, Mount Misen, island walk'},
+  {type: 'stop', icon: '🕊', name: 'Hiroshima + Miyajima', dates: '14 – 15 Nov', nights: 2, hotel: 'Grandvrio Hotel Miyajima Wakura · Miyajimaguchi (Route Inn)', note: 'Peace Memorial Park, floating torii, Mount Misen, island walk'},
   {type: 'move', mode: 'JR · Hiroshima → Onomichi (~1h20)'},
   {type: 'stop', icon: '🚲', name: 'Shimanami Kaido', dates: '16 – 17 Nov', nights: 2, hotel: null, note: '70km cycling across 6 islands · ocean views, bridges, island overnight'},
   {type: 'move', mode: 'Train/bus · Imabari → Osaka (~3h)'},
