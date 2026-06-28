@@ -1063,8 +1063,8 @@ const TRIP_DATA = {
     "date": "2026-11-09",
     "dayLabel": "Day 11 — Matsumoto → Takayama",
     "location": "Kawaguchiko → Matsumoto → Takayama",
-    "hotel": "Takayama — 1 of 2 (to book)",
-    "hotelNote": "🚗 Driving day across the Japan Alps. Takayama hotel — to book (2 nights).",
+    "hotel": "The Machiya Hotel Takayama",
+    "hotelNote": "🏨 CHECK-IN today · The Machiya Hotel Takayama · King Room · 2 nights (Nov 9→11). Conf #5980534699 · PIN 4702. ¥85,500 (prepaid). ☎ +81 577-57-7000.",
     "schedule": [
       {"time": "08:30", "title": "Depart Kawaguchiko by car", "description": "🚗 Early start for the mountain drive.", "maps": "Lake Kawaguchi"},
       {"time": "10:15–12:30", "title": "Matsumoto Castle + lunch", "description": "🚗 ~1h45 from Kawaguchiko · 🏯 'Crow Castle' — original black keep (¥700) · 🍜 Lunch in town.", "link": "https://www.matsumoto-castle.jp/lang/eng", "maps": "Matsumoto Castle"},
@@ -1076,8 +1076,8 @@ const TRIP_DATA = {
     "date": "2026-11-10",
     "dayLabel": "Day 12 — Takayama",
     "location": "Takayama · Sanmachi, morning market",
-    "hotel": "Takayama — 2 of 2 (to book)",
-    "hotelNote": "Second Takayama night.",
+    "hotel": "The Machiya Hotel Takayama",
+    "hotelNote": "Night 2 of 2 · The Machiya Hotel Takayama · Check out tomorrow → Shirakawa-gō / Kanazawa / Kyoto.",
     "schedule": [
       {"time": "08:00–09:30", "title": "Morning market + Sanmachi old town", "description": "🌅 Miyagawa riverside morning market · 🏮 Edo-era merchant streets, sake tasting, Hida-beef snacks.", "maps": "Miyagawa Morning Market Takayama"},
       {"time": "10:00–12:00", "title": "Hida Folk Village (option)", "description": "🏘 Open-air museum of thatched gasshō houses + Alps views (¥700).", "maps": "Hida Folk Village"},
@@ -1360,7 +1360,7 @@ const ROAD_TRIP = [
   {type: 'move', mode: 'Train → Odawara + pick up rental car · → Kawaguchiko (~1h15, stop Gotemba)'},
   {type: 'stop', icon: '🗻', name: 'Kawaguchiko', dates: '8 Nov', nights: 1, hotel: 'Fuji View Hotel · Lake Kawaguchi (onsen + gardens)', note: 'Mt Fuji · Chūreitō pagoda, Lake Kawaguchi, Oishi Park'},
   {type: 'move', mode: 'Car · Kawaguchiko → Matsumoto (~1h45) → Takayama (~2h)'},
-  {type: 'stop', icon: '🏔', name: 'Takayama', dates: '9 – 10 Nov', nights: 2, hotel: null, note: 'Matsumoto Castle en route · Sanmachi old town, morning market, Hida beef'},
+  {type: 'stop', icon: '🏔', name: 'Takayama', dates: '9 – 10 Nov', nights: 2, hotel: 'The Machiya Hotel Takayama (conf 5980534699)', note: 'Matsumoto Castle en route · Sanmachi old town, morning market, Hida beef'},
   {type: 'move', mode: 'Car · Takayama → Shirakawa-gō → Kanazawa (return car) → train Kyoto (~2h)'},
   {type: 'stop', icon: '⛩', name: 'Kyoto', dates: '11 – 13 Nov', nights: 3, hotel: 'Hotel Résol Kyoto Shijo Muromachi · Shijo (conf 6049260082)', note: 'Shirakawa-gō + Kanazawa (Kenroku-en) en route · Momiji · Arashiyama, Fushimi Inari, Nara'},
   {type: 'move', mode: 'Sanyo Shinkansen · Kyoto → Hiroshima (~1h40)'},
@@ -1504,7 +1504,8 @@ const LOCKED_EXPENSES = [
   { category: 'Accommodation', label: 'Hakone Hibarino Hot Spring Hotel · 1 night (Nov 6–7, 2 pax) · ¥77,701 · Conf 6272830839', amount: 1426, currency: 'ILS', locked: true },
   { category: 'Accommodation', label: 'Hotel Résol Kyoto Shijo Muromachi · 3 nights (Nov 11–14, 2 pax) · ¥82,579 · Conf 6049260082', amount: 1533, currency: 'ILS', locked: true },
   { category: 'Accommodation', label: 'Cross Hotel Osaka · 1 night (Nov 18–19, 2 pax) · ¥17,193 · Conf 6564540515', amount: 319, currency: 'ILS', locked: true },
-  { category: 'Accommodation', label: 'Fuji View Hotel · Kawaguchiko · 1 night (Nov 8–9, 2 pax) · Garden View', amount: 993, currency: 'ILS', locked: true }
+  { category: 'Accommodation', label: 'Fuji View Hotel · Kawaguchiko · 1 night (Nov 8–9, 2 pax) · Garden View', amount: 993, currency: 'ILS', locked: true },
+  { category: 'Accommodation', label: 'The Machiya Hotel Takayama · 2 nights (Nov 9–11, 2 pax) · ¥85,500 · Conf 5980534699', amount: 1587, currency: 'ILS', locked: true }
 ];
 const BUDGET_KEY = 'budget_expenses';
 
