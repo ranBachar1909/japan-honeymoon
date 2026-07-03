@@ -948,7 +948,7 @@ const TRIP_DATA = {
     "dayLabel": "Day 2 — Arrival + Akihabara Night (Halloween)",
     "location": "Tokyo · Akihabara, Shinjuku",
     "hotel": "Hotel Metropolitan Edmont Tokyo",
-    "hotelNote": "🏨 CHECK-IN today — home base for all 6 Tokyo nights. Hotel Metropolitan Edmont Tokyo, 3-10-8 Iidabashi, Chiyoda-ku (Suidōbashi Stn ~5 min · Iidabashi ~7 min · JR Sōbu line → Akihabara ~6 min, Shinjuku ~10 min). 6 nights (Oct 31→Nov 6). ⚠️ Price + confirmation number to add — send me the booking details.",
+    "hotelNote": "🏨 CHECK-IN today (from 15:00) — home base for all 6 Tokyo nights. Hotel Metropolitan Edmont Tokyo, 3-10-8 Iidabashi, Chiyoda-ku (Suidōbashi ~5 min · Iidabashi ~7 min · JR Sōbu line → Akihabara ~6 min, Shinjuku ~10 min). Edmont Standard Room, non-smoking, no meals. Conf #6669738938 · PIN 3899. ¥159,165 total / 6 nights. Free cancellation until Oct 29. ☎ +81 3 3237 1111. Check out Nov 6 by 11:00.",
     "schedule": [
       {"time": "11:40–14:45", "title": "Land at Narita + transfer to the hotel", "description": "🚆 Skyliner → Ueno then Sōbu line to Suidōbashi, OR N'EX → Tokyo Stn + Sōbu/Chūō to Iidabashi. ~1h45 with luggage · 📌 Visit Japan Web QR ready at immigration · 💡 On arrival: activate eSIM, get ¥ at a 7-Bank ATM, load Suica/Pasmo.", "link": "https://www.narita-airport.jp/en"},
       {"time": "14:45–15:15", "title": "Check in at Hotel Metropolitan Edmont", "description": "🏨 3-10-8 Iidabashi, Chiyoda-ku (~5 min from Suidōbashi, JR Sōbu line) · 🕐 Reception mid-afternoon · 💡 Drop bags; stay awake till ~23:00 to beat jet lag.", "link": null},
@@ -1378,7 +1378,7 @@ function scrollTo2(id) {
 const ROAD_TRIP = [
   {type: 'stop', endpoint: true, icon: '✈️', name: 'Tel Aviv', dates: 'Fri 30 Oct', nights: null, hotel: null, note: 'Departure · Ben Gurion T3'},
   {type: 'move', mode: 'Etihad EY594 → EY800 · TLV → AUH → NRT (~18h door-to-door)'},
-  {type: 'stop', icon: '🗼', name: 'Tokyo', dates: '31 Oct – 5 Nov', nights: 6, hotel: 'Hotel Metropolitan Edmont Tokyo · Iidabashi', note: 'Arrival · teamLab, Harajuku, Shibuya, Mario Kart, Tsukiji, Asakusa + Nikko day trip'},
+  {type: 'stop', icon: '🗼', name: 'Tokyo', dates: '31 Oct – 5 Nov', nights: 6, hotel: 'Hotel Metropolitan Edmont Tokyo · Iidabashi (conf 6669738938)', note: 'Arrival · teamLab, Harajuku, Shibuya, Mario Kart, Tsukiji, Asakusa + Nikko day trip'},
   {type: 'move', mode: 'Train · Tokyo → Kamakura (~1h) → Hakone (~1h30)'},
   {type: 'stop', icon: '♨️', name: 'Hakone', dates: '6 – 7 Nov', nights: 2, hotel: 'Hakone Hibarino · Sengokuhara (conf 6272830839 — 1 of 2 nights booked)', note: 'Kamakura en route (Great Buddha, Hasedera) · full Hakone loop day 2'},
   {type: 'move', mode: 'Train → Odawara + pick up rental car · → Kawaguchiko (~1h15, stop Gotemba)'},
@@ -1524,7 +1524,7 @@ const CCY_SYMBOL = { ILS: '₪', USD: '$', EUR: '€', JPY: '¥', AED: 'د.إ' }
 
 const LOCKED_EXPENSES = [
   { category: 'Flights', label: 'Etihad Economy · TLV ↔ NRT (round-trip, 2 pax)', amount: 1567, currency: 'USD', locked: true },
-  { category: 'Accommodation', label: 'Hotel Metropolitan Edmont Tokyo · 6 nights (Oct 31–Nov 6, 2 pax) · est. — send price to confirm', amount: 2633, currency: 'ILS', locked: true },
+  { category: 'Accommodation', label: 'Hotel Metropolitan Edmont Tokyo · 6 nights (Oct 31–Nov 6, 2 pax) · ¥159,165 · Conf 6669738938', amount: 2959, currency: 'ILS', locked: true },
   { category: 'Accommodation', label: 'Hakone Hibarino Hot Spring Hotel · 1 night (Nov 6–7, 2 pax) · ¥77,701 · Conf 6272830839', amount: 1426, currency: 'ILS', locked: true },
   { category: 'Accommodation', label: 'Hotel Résol Kyoto Shijo Muromachi · 3 nights (Nov 11–14, 2 pax) · ¥82,579 · Conf 6049260082', amount: 1533, currency: 'ILS', locked: true },
   { category: 'Accommodation', label: 'Cross Hotel Osaka · 1 night (Nov 18–19, 2 pax) · ¥17,193 · Conf 6564540515', amount: 319, currency: 'ILS', locked: true },
