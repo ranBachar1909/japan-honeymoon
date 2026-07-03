@@ -1152,6 +1152,18 @@ const TRIP_DATA = {
       {"time": "afternoon", "title": "Daishō-in temple + island snacks", "description": "🛕 Daishō-in hillside temple · 🍡 Momiji-manju (maple-leaf cakes) + grilled oysters on Omotesando street.", "maps": "Daishoin Temple Miyajima"}
     ]
   },
+  "2026-11-16": {
+    "date": "2026-11-16",
+    "dayLabel": "Day 18 — Shimanami Kaidō (cycling)",
+    "location": "Shimanami Kaidō · Onomichi → Imabari",
+    "hotel": "WAKKA (Imabari / Shimanami)",
+    "hotelNote": "🚲 WAKKA · cyclist stay on the Shimanami Kaidō (Imabari end) · 1 night (Nov 16→17) · ₪1,562 · sea-view cabins, bike-friendly.",
+    "schedule": [
+      {"time": "morning", "title": "Checkout → Onomichi → start the ride", "description": "🚲 JR Hiroshima → Onomichi (~1h20) · rent bikes (e-bikes recommended) · cross the island bridges over the Seto Inland Sea.", "maps": "Onomichi Station", "link": null},
+      {"time": "day", "title": "Island-hop by bike", "description": "🌊 Up to ~70 km across 6 islands (or a shorter stretch) · citrus groves, ocean views, bridge climbs.", "maps": "Shimanami Kaido", "link": null},
+      {"time": "evening", "title": "Check in WAKKA", "description": "🏨 Sea-view cyclist hotel near Imabari · relax.", "maps": "WAKKA Shimanami", "link": null}
+    ]
+  },
   "2026-11-18": {
     "date": "2026-11-18",
     "dayLabel": "Day 20 — Osaka (last night in Japan)",
@@ -1406,7 +1418,7 @@ const ROAD_TRIP = [
   {type: 'move', mode: 'Sanyo Shinkansen · Kyoto → Hiroshima (~1h40)'},
   {type: 'stop', icon: '🕊', name: 'Hiroshima + Miyajima', dates: '14 – 15 Nov', nights: 2, hotel: 'Grandvrio Hotel Miyajima Wakura · Miyajimaguchi (Route Inn)', note: 'Peace Memorial Park, floating torii, Mount Misen, island walk'},
   {type: 'move', mode: 'JR · Hiroshima → Onomichi (~1h20)'},
-  {type: 'stop', icon: '🚲', name: 'Shimanami Kaido', dates: '16 Nov', nights: 1, hotel: null, note: '70km cycling across 6 islands · island overnight'},
+  {type: 'stop', icon: '🚲', name: 'Shimanami Kaido', dates: '16 Nov', nights: 1, hotel: 'WAKKA · Imabari / Shimanami (cycling stay)', note: '70km cycling across 6 islands · island overnight'},
   {type: 'move', mode: 'Train/bus · Imabari → Osaka (~3h)'},
   {type: 'stop', icon: '🐙', name: 'Osaka', dates: '17 – 18 Nov', nights: 2, hotel: 'APA Hotel Namba Shinsaibashi Nishi', note: 'Dotonbori street food · last stop in Japan'},
   {type: 'move', mode: 'Flight · KIX → USM or KIX → BKK → USM'},
@@ -1546,7 +1558,8 @@ const LOCKED_EXPENSES = [
   { category: 'Accommodation', label: 'APA Hotel Namba Shinsaibashi Nishi · 2 nights (Nov 17–19, 2 pax) · Osaka', amount: 474, currency: 'ILS', locked: true },
   { category: 'Accommodation', label: 'Rakuyu · Fujikawaguchiko · 2 nights (Nov 7–9, 2 pax)', amount: 2081, currency: 'ILS', locked: true },
   { category: 'Accommodation', label: 'The Machiya Hotel Takayama · 2 nights (Nov 9–11, 2 pax) · Conf 5980534699', amount: 1590, currency: 'ILS', locked: true },
-  { category: 'Accommodation', label: 'Grandvrio Hotel Miyajima Wakura · 2 nights (Nov 14–16, 2 pax)', amount: 1031, currency: 'ILS', locked: true }
+  { category: 'Accommodation', label: 'Grandvrio Hotel Miyajima Wakura · 2 nights (Nov 14–16, 2 pax)', amount: 1031, currency: 'ILS', locked: true },
+  { category: 'Accommodation', label: 'WAKKA · Shimanami Kaidō / Imabari · 1 night (Nov 16–17, 2 pax)', amount: 1562, currency: 'ILS', locked: true }
 ];
 const BUDGET_KEY = 'budget_expenses';
 
