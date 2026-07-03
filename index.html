@@ -1132,7 +1132,7 @@ const TRIP_DATA = {
     "dayLabel": "Day 16 — Kyoto → Hiroshima",
     "location": "Hiroshima · Peace Memorial Park",
     "hotel": "Grandvrio Hotel Miyajima Wakura (Route Inn)",
-    "hotelNote": "🏨 CHECK-IN today (from 15:00) · Grandvrio Hotel Miyajima Wakura — Route Inn, Miyajimaguchi 1-1-37 (mainland, by the Miyajima ferry pier) · 2 nights (Nov 14→16), base for both Hiroshima + Miyajima. ¥55,480 (₪1,030). Check out Nov 16 by 10:00.",
+    "hotelNote": "🏨 CHECK-IN today (from 15:00) · Grandvrio Hotel Miyajima Wakura — Route Inn, Miyajimaguchi 1-1-37 (mainland, by the Miyajima ferry pier) · 2 nights (Nov 14→16), base for both Hiroshima + Miyajima. ₪1,031. Check out Nov 16 by 10:00.",
     "schedule": [
       {"time": "morning", "title": "Train Kyoto → Hiroshima", "description": "🚆 Sanyo Shinkansen (Nozomi) ~1h40 · 🧳 Then JR to Miyajimaguchi to drop bags.", "maps": "Hiroshima Station"},
       {"time": "13:00–16:00", "title": "Peace Memorial Park + Museum", "description": "🕊 A-Bomb Dome, Peace Memorial Museum, Children's Peace Monument · 🎟 Museum ¥200, allow ~2h · 💡 Moving — give it time.", "maps": "Hiroshima Peace Memorial Park"},
@@ -1156,10 +1156,10 @@ const TRIP_DATA = {
     "date": "2026-11-18",
     "dayLabel": "Day 20 — Osaka (last night in Japan)",
     "location": "Osaka · Dotonbori, Shinsaibashi",
-    "hotel": "Cross Hotel Osaka",
-    "hotelNote": "🏨 CHECK-IN today (from 15:00) · Cross Hotel Osaka, Shinsaibashisuji 2-5-15, Chuo-ku · Standard Double (high floor), non-smoking, no meals. Conf #6564540515 · PIN 4535. ¥17,193 — pay at property. Free cancellation until Nov 16. ☎ +81 6 6213 8281. Check out by 11:00.",
+    "hotel": "APA Hotel Namba Shinsaibashi Nishi",
+    "hotelNote": "🏨 APA Hotel Namba Shinsaibashi Nishi · Osaka (Namba/Shinsaibashi) · 2 nights (Nov 17→19) · ₪474 · last stop in Japan. Check out Nov 19 → fly to Thailand.",
     "schedule": [
-      {"time": "morning", "title": "Imabari → Osaka", "description": "🚆 ~3h (Ltd Exp + Shinkansen) from the Shimanami end · 🧳 Drop bags at Cross Hotel, Shinsaibashi.", "maps": "Cross Hotel Osaka"},
+      {"time": "morning", "title": "Imabari → Osaka", "description": "🚆 ~3h (Ltd Exp + Shinkansen) from the Shimanami end · 🧳 Drop bags at the APA Hotel, Namba.", "maps": "APA Hotel Namba Shinsaibashi Nishi"},
       {"time": "15:00 →", "title": "Dotonbori + Shinsaibashi", "description": "🍜 Street-food crawl: takoyaki, okonomiyaki, kushikatsu · 📸 Glico running-man sign + canal · 🛍 Shinsaibashi arcade at your doorstep. Last night in Japan!", "maps": "Dotonbori Osaka"}
     ]
   }
@@ -1177,7 +1177,7 @@ const DAY_HINTS = {
   "2026-11-14": "Travel · Hiroshima",
   "2026-11-15": "Miyajima",
   "2026-11-16": "Shimanami Kaido",
-  "2026-11-17": "Shimanami Kaido",
+  "2026-11-17": "Osaka",
   "2026-11-18": "Travel · Osaka",
   "2026-11-19": "Osaka → Thailand",
   "2026-11-20": "Koh Samui · Beach & relax",
@@ -1406,9 +1406,9 @@ const ROAD_TRIP = [
   {type: 'move', mode: 'Sanyo Shinkansen · Kyoto → Hiroshima (~1h40)'},
   {type: 'stop', icon: '🕊', name: 'Hiroshima + Miyajima', dates: '14 – 15 Nov', nights: 2, hotel: 'Grandvrio Hotel Miyajima Wakura · Miyajimaguchi (Route Inn)', note: 'Peace Memorial Park, floating torii, Mount Misen, island walk'},
   {type: 'move', mode: 'JR · Hiroshima → Onomichi (~1h20)'},
-  {type: 'stop', icon: '🚲', name: 'Shimanami Kaido', dates: '16 – 17 Nov', nights: 2, hotel: null, note: '70km cycling across 6 islands · ocean views, bridges, island overnight'},
+  {type: 'stop', icon: '🚲', name: 'Shimanami Kaido', dates: '16 Nov', nights: 1, hotel: null, note: '70km cycling across 6 islands · island overnight'},
   {type: 'move', mode: 'Train/bus · Imabari → Osaka (~3h)'},
-  {type: 'stop', icon: '🐙', name: 'Osaka', dates: '18 Nov', nights: 1, hotel: 'Cross Hotel Osaka · Shinsaibashi (conf 6564540515 · pay on site)', note: 'Dotonbori street food, last night in Japan'},
+  {type: 'stop', icon: '🐙', name: 'Osaka', dates: '17 – 18 Nov', nights: 2, hotel: 'APA Hotel Namba Shinsaibashi Nishi', note: 'Dotonbori street food · last stop in Japan'},
   {type: 'move', mode: 'Flight · KIX → USM or KIX → BKK → USM'},
   {type: 'stop', icon: '🏝', name: 'Koh Samui', dates: '19 – 25 Nov', nights: 6, hotel: null, note: 'Beach relaxation, island vibes, couples spa · wind down after Japan'},
   {type: 'move', mode: 'Flight · USM → BKK (~1h)'},
@@ -1543,10 +1543,10 @@ const LOCKED_EXPENSES = [
   { category: 'Accommodation', label: 'Hotel Metropolitan Edmont Tokyo · 6 nights (Oct 31–Nov 6, 2 pax) · ¥159,165 · Conf 6669738938', amount: 2959, currency: 'ILS', locked: true },
   { category: 'Accommodation', label: 'Hakone Hibarino Hot Spring Hotel · 1 night (Nov 6–7, 2 pax) · Conf 6272830839', amount: 1445, currency: 'ILS', locked: true },
   { category: 'Accommodation', label: 'Hotel Résol Kyoto Shijo Muromachi · 3 nights (Nov 11–14, 2 pax) · Conf 6049260082', amount: 1424, currency: 'ILS', locked: true },
-  { category: 'Accommodation', label: 'Cross Hotel Osaka · 1 night (Nov 18–19, 2 pax) · ¥17,193 · Conf 6564540515', amount: 319, currency: 'ILS', locked: true },
+  { category: 'Accommodation', label: 'APA Hotel Namba Shinsaibashi Nishi · 2 nights (Nov 17–19, 2 pax) · Osaka', amount: 474, currency: 'ILS', locked: true },
   { category: 'Accommodation', label: 'Rakuyu · Fujikawaguchiko · 2 nights (Nov 7–9, 2 pax)', amount: 2081, currency: 'ILS', locked: true },
   { category: 'Accommodation', label: 'The Machiya Hotel Takayama · 2 nights (Nov 9–11, 2 pax) · Conf 5980534699', amount: 1590, currency: 'ILS', locked: true },
-  { category: 'Accommodation', label: 'Grandvrio Hotel Miyajima Wakura · 2 nights (Nov 14–16, 2 pax) · ¥55,480', amount: 1030, currency: 'ILS', locked: true }
+  { category: 'Accommodation', label: 'Grandvrio Hotel Miyajima Wakura · 2 nights (Nov 14–16, 2 pax)', amount: 1031, currency: 'ILS', locked: true }
 ];
 const BUDGET_KEY = 'budget_expenses';
 
