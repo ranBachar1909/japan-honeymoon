@@ -1133,7 +1133,7 @@ const TRIP_DATA = {
     "dayLabel": "Day 16 — Kyoto (extra day)",
     "location": "Kyoto",
     "hotel": "Résol Kyoto Shijo Muromachi",
-    "hotelNote": "Night 4 of 4 (last Kyoto night) · Résol Kyoto Shijo Muromachi · Check out tomorrow → Shimanami. ⚠️ Extend the Résol booking to 4 nights (was Nov 11–14).",
+    "hotelNote": "Night 4 of 4 (last Kyoto night) · Résol Kyoto Shijo Muromachi · Check out tomorrow → Shimanami.",
     "schedule": []
   },
   "2026-11-15": {
@@ -1141,7 +1141,7 @@ const TRIP_DATA = {
     "dayLabel": "Day 17 — Kyoto → Shimanami (WAKKA)",
     "location": "Kyoto → Onomichi → Shimanami Kaidō",
     "hotel": "WAKKA (Shimanami)",
-    "hotelNote": "🚲 WAKKA · cyclist stay on the Shimanami Kaidō · 1 night (Nov 15→16) · ₪1,562 · sea-view cabins. ⚠️ Make sure the WAKKA booking is dated Nov 15–16 (was Nov 16–17).",
+    "hotelNote": "🚲 WAKKA · cyclist stay on the Shimanami Kaidō · 1 night (Nov 15→16) · ₪1,562. ⚠️ Your WAKKA booking is still dated Nov 16–17 — change it to Nov 15–16 (else no hotel Nov 15 + clashes with Osaka on Nov 16).",
     "schedule": [
       {"time": "morning", "title": "Checkout Kyoto → Onomichi", "description": "🚆 Shinkansen Kyoto → Fukuyama → Onomichi (~2h).", "maps": "Onomichi Station", "link": null},
       {"time": "midday", "title": "Start the Shimanami Kaidō ride", "description": "🚲 Rent bikes (e-bikes recommended) · cross the island bridges over the Seto Inland Sea.", "maps": "Shimanami Kaido", "link": null},
@@ -1152,11 +1152,11 @@ const TRIP_DATA = {
     "date": "2026-11-16",
     "dayLabel": "Day 18 — Finish Shimanami → Osaka",
     "location": "Shimanami → Imabari → Osaka",
-    "hotel": "APA Hotel Namba Shinsaibashi Nishi",
-    "hotelNote": "🏨 CHECK-IN today · APA Hotel Namba Shinsaibashi Nishi · Namba/Shinsaibashi · 3 nights (Nov 16→19) · night 1. ⚠️ Extend the APA booking to include tonight (was Nov 17–19).",
+    "hotel": "Cross Hotel Osaka",
+    "hotelNote": "🏨 CHECK-IN today · Cross Hotel Osaka · Shinsaibashi · 3 nights (Nov 16→19) · ₪1,427 · night 1.",
     "schedule": [
       {"time": "morning", "title": "Finish the ride → Imabari", "description": "🚲 Complete the Shimanami Kaidō to Imabari · return the bikes.", "maps": "Imabari Station", "link": null},
-      {"time": "afternoon", "title": "Imabari → Osaka", "description": "🚆 Ltd Exp + Shinkansen ~3h · 🧳 check in APA, Namba.", "maps": "APA Hotel Namba Shinsaibashi Nishi", "link": null},
+      {"time": "afternoon", "title": "Imabari → Osaka", "description": "🚆 Ltd Exp + Shinkansen ~3h · 🧳 check in Cross Hotel, Shinsaibashi.", "maps": "Cross Hotel Osaka", "link": null},
       {"time": "evening", "title": "Dotonbori + Shinsaibashi", "description": "🍜 Takoyaki, okonomiyaki · Glico sign + canal · Shinsaibashi arcade.", "maps": "Dotonbori Osaka", "link": null}
     ]
   },
@@ -1164,8 +1164,8 @@ const TRIP_DATA = {
     "date": "2026-11-17",
     "dayLabel": "Day 19 — Osaka (or Nara/Kobe day trip)",
     "location": "Osaka · Castle, Namba",
-    "hotel": "APA Hotel Namba Shinsaibashi Nishi",
-    "hotelNote": "Night 2 of 3 · APA Namba Shinsaibashi.",
+    "hotel": "Cross Hotel Osaka",
+    "hotelNote": "Night 2 of 3 · Cross Hotel Osaka.",
     "schedule": [
       {"time": "morning", "title": "Osaka Castle", "description": "🏯 Iconic castle + park · or 🦌 day trip to Nara (Great Buddha + deer, ~45 min).", "maps": "Osaka Castle", "link": null},
       {"time": "afternoon", "title": "Kuromon market + Namba", "description": "🍢 Kuromon Ichiba food stalls · Namba, Amerikamura, Shinsaibashi.", "maps": "Kuromon Ichiba Market", "link": null},
@@ -1176,8 +1176,8 @@ const TRIP_DATA = {
     "date": "2026-11-18",
     "dayLabel": "Day 20 — Osaka (last day in Japan)",
     "location": "Osaka · Namba (Kobe/Himeji possible)",
-    "hotel": "APA Hotel Namba Shinsaibashi Nishi",
-    "hotelNote": "Night 3 of 3 · APA Namba Shinsaibashi · last night in Japan. Check out Nov 19 → fly to Thailand.",
+    "hotel": "Cross Hotel Osaka",
+    "hotelNote": "Night 3 of 3 · Cross Hotel Osaka · last night in Japan. Check out Nov 19 → fly to Thailand.",
     "schedule": [
       {"time": "morning", "title": "Osaka Castle", "description": "🏯 Iconic castle + park, autumn colors.", "maps": "Osaka Castle", "link": null},
       {"time": "afternoon", "title": "Kuromon market + Namba", "description": "🍢 Kuromon Ichiba food stalls · Namba / Amerikamura / Shinsaibashi.", "maps": "Kuromon Ichiba Market", "link": null},
@@ -1427,7 +1427,7 @@ const ROAD_TRIP = [
   {type: 'move', mode: 'Shinkansen · Kyoto → Onomichi (~2h)'},
   {type: 'stop', icon: '🚲', name: 'Shimanami Kaido', dates: '15 Nov', nights: 1, hotel: 'WAKKA · Shimanami (cycling stay)', note: 'Cycle the island bridges · overnight mid-route'},
   {type: 'move', mode: 'Finish the ride → Imabari → Osaka (~3h)'},
-  {type: 'stop', icon: '🐙', name: 'Osaka', dates: '16 – 18 Nov', nights: 3, hotel: 'APA Hotel Namba Shinsaibashi Nishi', note: 'Dotonbori, Osaka Castle · Nara/Kobe day-trip possible · last stop'},
+  {type: 'stop', icon: '🐙', name: 'Osaka', dates: '16 – 18 Nov', nights: 3, hotel: 'Cross Hotel Osaka · Shinsaibashi', note: 'Dotonbori, Osaka Castle · Nara/Kobe day-trip possible · last stop'},
   {type: 'move', mode: 'Flight · KIX → USM or KIX → BKK → USM'},
   {type: 'stop', icon: '🏝', name: 'Koh Samui', dates: '19 – 25 Nov', nights: 6, hotel: null, note: 'Beach relaxation, island vibes, couples spa · wind down after Japan'},
   {type: 'move', mode: 'Flight · USM → BKK (~1h)'},
@@ -1561,8 +1561,8 @@ const LOCKED_EXPENSES = [
   { category: 'Flights', label: 'Etihad Economy · TLV ↔ NRT (round-trip, 2 pax)', amount: 1567, currency: 'USD', locked: true },
   { category: 'Accommodation', label: 'Hotel Metropolitan Edmont Tokyo · 6 nights (Oct 31–Nov 6, 2 pax) · ¥159,165 · Conf 6669738938', amount: 2959, currency: 'ILS', locked: true },
   { category: 'Accommodation', label: 'Hakone Hibarino Hot Spring Hotel · 1 night (Nov 6–7, 2 pax) · Conf 6272830839', amount: 1445, currency: 'ILS', locked: true },
-  { category: 'Accommodation', label: 'Hotel Résol Kyoto Shijo Muromachi · 4 nights (Nov 11–15) · Conf 6049260082 · +1 night to confirm', amount: 1424, currency: 'ILS', locked: true },
-  { category: 'Accommodation', label: 'APA Hotel Namba Shinsaibashi Nishi · 3 nights (Nov 16–19) · Osaka · +1 night to confirm', amount: 474, currency: 'ILS', locked: true },
+  { category: 'Accommodation', label: 'Hotel Résol Kyoto Shijo Muromachi · 4 nights (Nov 11–15) · Conf 6049260082', amount: 2336, currency: 'ILS', locked: true },
+  { category: 'Accommodation', label: 'Cross Hotel Osaka · 3 nights (Nov 16–19, 2 pax) · Shinsaibashi', amount: 1427, currency: 'ILS', locked: true },
   { category: 'Accommodation', label: 'Rakuyu · Fujikawaguchiko · 2 nights (Nov 7–9, 2 pax)', amount: 2081, currency: 'ILS', locked: true },
   { category: 'Accommodation', label: 'The Machiya Hotel Takayama · 2 nights (Nov 9–11, 2 pax) · Conf 5980534699', amount: 1590, currency: 'ILS', locked: true },
   { category: 'Accommodation', label: 'WAKKA · Shimanami Kaidō · 1 night (Nov 15–16, 2 pax)', amount: 1562, currency: 'ILS', locked: true }
