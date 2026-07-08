@@ -1185,6 +1185,18 @@ const TRIP_DATA = {
       {"time": "day", "title": "USJ with Express Pass ⚡", "description": "🍄 Super Nintendo World (Mario Kart, Donkey Kong) · ⚡ Harry Potter (Forbidden Journey) · 🎢 Flying Dinosaur / Hollywood Dream · 📌 Express Pass = skip the lines.", "maps": "Super Nintendo World", "link": null},
       {"time": "evening", "title": "USJ after dark + CityWalk dinner", "description": "🎆 Night shows + illuminations · dinner at Universal CityWalk · back to pack.", "maps": "Universal CityWalk Osaka", "link": null}
     ]
+  },
+  "2026-11-19": {
+    "date": "2026-11-19",
+    "dayLabel": "Day 21 — Osaka → Koh Samui 🏝",
+    "location": "Osaka → Koh Samui (Thailand)",
+    "hotel": "Centara Reserve Samui",
+    "hotelNote": "🏝 CHECK-IN today (from 15:00) · Centara Reserve Samui, Chaweng Beach, Koh Samui · 7 nights (Nov 19→26) · €2,357 · Deluxe Garden King, breakfast incl. Conf #5000518427 · PIN 7562. ☎ +66 77 230 500. The honeymoon begins! 💕",
+    "schedule": [
+      {"time": "morning", "title": "Checkout Osaka → KIX airport", "description": "🚆 Namba → Kansai Airport ~45 min (Nankai Rapi:t).", "maps": "Kansai International Airport", "link": null},
+      {"time": "midday", "title": "Fly to Koh Samui", "description": "✈️ KIX → Koh Samui (USM), usually via Bangkok.", "maps": "Samui Airport", "link": null},
+      {"time": "15:00 →", "title": "Check in Centara Reserve Samui", "description": "🏝 Chaweng Beach · pool, spa, cocktails · unwind. 💕", "maps": "Centara Reserve Samui", "link": null}
+    ]
   }
 };
 
@@ -1208,7 +1220,7 @@ const DAY_HINTS = {
   "2026-11-22": "Koh Samui · Beach & relax",
   "2026-11-23": "Koh Samui · Beach & relax",
   "2026-11-24": "Koh Samui · Beach & relax",
-  "2026-11-25": "Koh Samui → Bangkok",
+  "2026-11-25": "Koh Samui · last beach day",
   "2026-11-26": "Flight home · BKK → TLV"
 };
 
@@ -1431,7 +1443,7 @@ const ROAD_TRIP = [
   {type: 'move', mode: 'Finish the ride → Imabari → Osaka (~3h)'},
   {type: 'stop', icon: '🐙', name: 'Osaka', dates: '16 – 18 Nov', nights: 3, hotel: 'Cross Hotel Osaka · Shinsaibashi', note: 'Dotonbori, Osaka Castle · Nara/Kobe day-trip possible · last stop'},
   {type: 'move', mode: 'Flight · KIX → USM or KIX → BKK → USM'},
-  {type: 'stop', icon: '🏝', name: 'Koh Samui', dates: '19 – 25 Nov', nights: 6, hotel: null, note: 'Beach relaxation, island vibes, couples spa · wind down after Japan'},
+  {type: 'stop', icon: '🏝', name: 'Koh Samui', dates: '19 – 25 Nov', nights: 7, hotel: 'Centara Reserve Samui · Chaweng Beach (conf 5000518427)', note: 'Beach honeymoon 💕 · pool, spa, Chaweng · wind down after Japan'},
   {type: 'move', mode: 'Flight · USM → BKK (~1h)'},
   {type: 'stop', endpoint: true, icon: '✈️', name: 'Tel Aviv', dates: 'Thu 26 Nov', nights: null, hotel: null, note: 'Flight home · BKK → TLV'}
 ];
@@ -1567,7 +1579,8 @@ const LOCKED_EXPENSES = [
   { category: 'Accommodation', label: 'Cross Hotel Osaka · 3 nights (Nov 16–19, 2 pax) · Shinsaibashi', amount: 1427, currency: 'ILS', locked: true },
   { category: 'Accommodation', label: 'Rakuyu · Fujikawaguchiko · 2 nights (Nov 7–9, 2 pax)', amount: 2081, currency: 'ILS', locked: true },
   { category: 'Accommodation', label: 'The Machiya Hotel Takayama · 2 nights (Nov 9–11, 2 pax) · Conf 5980534699', amount: 1590, currency: 'ILS', locked: true },
-  { category: 'Accommodation', label: 'WAKKA · Shimanami Kaidō · 1 night (Nov 15–16, 2 pax)', amount: 1562, currency: 'ILS', locked: true }
+  { category: 'Accommodation', label: 'WAKKA · Shimanami Kaidō · 1 night (Nov 15–16, 2 pax)', amount: 1562, currency: 'ILS', locked: true },
+  { category: 'Accommodation', label: 'Centara Reserve Samui · Koh Samui · 7 nights (Nov 19–26, 2 pax) · Conf 5000518427', amount: 2357, currency: 'EUR', locked: true }
 ];
 const BUDGET_KEY = 'budget_expenses';
 
