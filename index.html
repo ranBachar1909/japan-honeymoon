@@ -1138,14 +1138,14 @@ const TRIP_DATA = {
   },
   "2026-11-15": {
     "date": "2026-11-15",
-    "dayLabel": "Day 17 — Kyoto → Shimanami (WAKKA)",
+    "dayLabel": "Day 17 — Kyoto → Shimanami (Setoda)",
     "location": "Kyoto → Onomichi → Shimanami Kaidō",
-    "hotel": "WAKKA (Shimanami)",
-    "hotelNote": "🚲 WAKKA · cyclist stay on the Shimanami Kaidō · 1 night (Nov 15→16) · ₪1,562. ⏳ Date change to Nov 15–16 requested with the hotel — awaiting reply (booking currently Nov 16–17).",
+    "hotel": "Yubune (Setoda)",
+    "hotelNote": "🚲 Yubune · hotel-above-a-bathhouse in Setoda, Ikuchijima (mid-route) · 1 night (Nov 15→16). Cyclist-friendly · public onsen bath · Azumi Setoda's sister property. ⚠️ Send me the price to add to the budget.",
     "schedule": [
       {"time": "morning", "title": "Checkout Kyoto → Onomichi", "description": "🚆 Shinkansen Kyoto → Fukuyama → Onomichi (~2h).", "maps": "Onomichi Station", "link": null},
-      {"time": "midday", "title": "Start the Shimanami Kaidō ride", "description": "🚲 Rent bikes · cross the island bridges over the Seto Inland Sea.", "maps": "Shimanami Kaido", "link": null},
-      {"time": "evening", "title": "Check in WAKKA", "description": "🏨 Sea-view cyclist stay mid-route · relax.", "maps": "WAKKA Shimanami", "link": null}
+      {"time": "midday", "title": "Cycle Onomichi → Setoda (~30 km)", "description": "🚲 Rent bikes · cross the island bridges (Mukaishima, Innoshima, Ikuchijima) to Setoda.", "maps": "Shimanami Kaido", "link": null},
+      {"time": "evening", "title": "Check in Yubune (Setoda)", "description": "🏨 Hotel above a bathhouse in Setoda town · soak in the onsen + relax.", "maps": "Yubune Setoda", "link": null}
     ]
   },
   "2026-11-16": {
@@ -1510,7 +1510,7 @@ const ROAD_TRIP = [
   {type: 'move', mode: 'Car · Takayama → Shirakawa-gō → Kanazawa (return car) → train Kyoto (~2h)'},
   {type: 'stop', icon: '⛩', name: 'Kyoto', dates: '11 – 14 Nov', nights: 4, hotel: 'Hotel Résol Kyoto Shijo Muromachi · Shijo (conf 6049260082)', note: 'Shirakawa-gō + Kanazawa en route · Higashiyama, Fushimi Inari, Kinkaku-ji, Nishiki · Momiji'},
   {type: 'move', mode: 'Shinkansen · Kyoto → Onomichi (~2h)'},
-  {type: 'stop', icon: '🚲', name: 'Shimanami Kaido', dates: '15 Nov', nights: 1, hotel: 'WAKKA · Shimanami (cycling stay)', note: 'Cycle the island bridges · overnight mid-route'},
+  {type: 'stop', icon: '🚲', name: 'Shimanami Kaido', dates: '15 Nov', nights: 1, hotel: 'Yubune · Setoda (Ikuchijima)', note: 'Cycle the island bridges · overnight in Setoda (mid-route)'},
   {type: 'move', mode: 'Finish the ride → Imabari → Osaka (~3h)'},
   {type: 'stop', icon: '🐙', name: 'Osaka', dates: '16 – 18 Nov', nights: 3, hotel: 'Cross Hotel Osaka · Shinsaibashi', note: 'Dotonbori, Osaka Castle · Nara/Kobe day-trip possible · last stop'},
   {type: 'move', mode: 'Flight · KIX → USM or KIX → BKK → USM'},
@@ -1650,7 +1650,7 @@ const LOCKED_EXPENSES = [
   { category: 'Accommodation', label: 'Cross Hotel Osaka · 3 nights (Nov 16–19, 2 pax) · Shinsaibashi', amount: 1427, currency: 'ILS', locked: true },
   { category: 'Accommodation', label: 'Rakuyu · Fujikawaguchiko · 2 nights (Nov 7–9, 2 pax)', amount: 2081, currency: 'ILS', locked: true },
   { category: 'Accommodation', label: 'The Machiya Hotel Takayama · 2 nights (Nov 9–11, 2 pax) · Conf 5980534699', amount: 1590, currency: 'ILS', locked: true },
-  { category: 'Accommodation', label: 'WAKKA · Shimanami Kaidō · 1 night (Nov 15–16, 2 pax)', amount: 1562, currency: 'ILS', locked: true },
+  { category: 'Accommodation', label: 'Yubune · Setoda (Ikuchijima) · 1 night (Nov 15–16, 2 pax) · price to confirm', amount: 1562, currency: 'ILS', locked: true },
   { category: 'Accommodation', label: 'Centara Reserve Samui · Koh Samui · 7 nights (Nov 19–26, 2 pax) · Conf 5000518427', amount: 7628, currency: 'ILS', locked: true }
 ];
 const BUDGET_KEY = 'budget_expenses';
